@@ -1,0 +1,127 @@
+/* helpers/accessibility.css */
+img {
+  height: 5em;
+  width: 5em;
+}
+.invisible {
+  left: -999px;
+  /* overflow: hidden; */
+  /* position: absolute; */
+  top: -999px;
+}
+
+/* helpers/align.css */
+
+.align {
+  display: grid;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  justify-items: center;
+  place-items: center;
+}
+
+/* layout/base.css */
+
+:root {
+  --body-background-color: #82a8ee;
+  --body-color: #97adc6;
+}
+
+body {
+  background-color: #82a8ee;
+  background-color: var(--body-background-color);
+  color: #97adc6;
+  color: var(--body-color);
+  margin: 0;
+  min-height: 100vh;
+}
+
+/* modules/anchor.css */
+
+a {
+  color: inherit;
+  outline: 0;
+}
+
+/* modules/icon.css */
+
+.icons {
+  display: none;
+}
+
+.icon {
+  height: 1em;
+  display: inline-block;
+  fill: currentcolor;
+  width: 1em;
+  vertical-align: middle;
+}
+
+.icon--2x {
+  font-size: 2rem;
+}
+
+/* modules/image.css */
+
+svg {
+  max-width: 100%;
+}
+
+/* modules/navigation.css */
+
+:root {
+  --navigation-background-color: #f0f6ff;
+  --navigation-border-radius: 0.25em;
+
+  --navigation-anchor-padding: 1.5em;
+}
+
+.navigation {
+  background-color: #f0f6ff;
+  background-color: var(--navigation-background-color);
+  border-radius: 0.25em;
+  border-radius: var(--navigation-border-radius);
+  -webkit-box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.3);
+          box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.3);
+}
+
+.navigation ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navigation a {
+  display: block;
+  padding: 3.5em;
+  padding: var(--navigation-anchor-padding);
+  position: relative;
+  text-decoration: none;
+}
+
+.navigation a:focus::after,
+.navigation a:hover::after {
+  opacity: 1;
+}
+
+.navigation a::after {
+  height: 100%;
+  -webkit-box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.3);
+          box-shadow: 0 0.5em 1em rgba(0, 0, 0, 0.3);
+  content: '';
+  width: 100%;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  -webkit-transition: opacity 0.3s;
+  -o-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}
+
+.navigation--inline ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
