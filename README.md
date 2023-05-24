@@ -7,6 +7,11 @@ E-Commerce, realizado en el lado del backend, en base a la entrega final de CODE
 Tareas a realizar paralelamente. 
 
 - [ ] Trabajar en estilos de renders
+  - [X] Index
+  - [X] Products
+  - [ ] Users
+  - [ ] Login
+  - [ ] Register
 - [ ] Manejar cambios en renderizados a traves del cliente y no desde el servidor
 - [ ] Refinar manejo de logs 
 

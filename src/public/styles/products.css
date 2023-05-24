@@ -5,6 +5,16 @@ body {
  background-color: #FAFAFA;
 }
 
+img, button{
+  transition: transform 0.2s ease-in-out();
+}
+
+img:hover, button:hover{
+  transform:scale(1.1)
+}
+
+
+
 
 .title {
   width: 100%;
@@ -20,9 +30,14 @@ body {
 #carticon {
   height: 4em;
   width: 4em;
-  margin-right: 4em;
 }
 
+#homeicon {
+  
+  margin-right: 4em;
+  height: 4em;
+  width: 4em;
+}
 h1{
   font-weight: 900;
   margin-left:  2em;
@@ -100,3 +115,42 @@ button {
   font-weight: bold;
   margin-top: 20px;
 }
+.pagination {
+  margin-left: 2em;
+}
+
+
+/* Formulario de carga de producto | carga de producto a carrito  */
+
+.uploadProducts {
+  display: flex;
+  margin-left: 2em;
+}
+
+.uploadtocart {
+  align-items: center;
+}
+
+#cid, #pid, #quantity, #cartButton {
+  margin-top: 1em;
+}
+
+
+.uploadnewproduct {
+  display: flex;
+  align-items: center;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
