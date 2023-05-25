@@ -1,4 +1,9 @@
 /* helpers/accessibility.css */
+
+h4 {
+  margin-left: 2em;
+  color: black;
+}
 img {
   height: 5em;
   width: 5em;

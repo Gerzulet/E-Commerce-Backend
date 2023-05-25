@@ -8,12 +8,27 @@ Tareas a realizar paralelamente.
 
 - [ ] Trabajar en estilos de renders
   - [X] Index
+   - [X] Incluir user en pantalla principal
+   - [ ] Agregar estilos para la ruta current (OPCIONAL)
+   - [ ] Agregar boton para salir de sesion
   - [X] Products
+   - [X] Al eliminar productos recargar pagina
+   - [X] Revisar permisos para eliminar productos
+   - [ ] Manejar respuestas con alertify o similar
   - [ ] Users
   - [ ] Login
+   - [X] Redireccionar a HOME tras hacer login exitoso
+   - [ ] Manejar respuesta en caso de usuario incorrecto
+  - [ ] Restore
   - [ ] Register
+   - [ ] Verificar creacion de usuario
+       - [ ] Manejar respuesta desde el front
+   - [ ] Añadir mail para creacion de usuario
 - [ ] Refinar manejo de logs 
 - [ ] Manejar cambios en renderizados a traves del cliente y no desde el servidor
+- [ ] Refinar testing
+- [ ] Documentar
+- [ ] Pasar a .env variables e informacion sensible (cookies secrets, etc..)
 
 Desde el router de /api/users, crear tres rutas:
 - [X] GET  /  deberá obtener todos los usuarios, éste sólo debe devolver los datos principales como nombre, correo, tipo de cuenta (rol)

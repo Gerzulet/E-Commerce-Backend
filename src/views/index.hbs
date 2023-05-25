@@ -1,8 +1,12 @@
 <body class="align">
-
   <nav class="navigation navigation--inline">
+    {{#if loggedin}}
+    <div>
+      <h4>Bienvenido: {{user}}</h4>
+      
+    </div>
+      {{/if}}
     <ul>
-
       <!-- Si nos hemos loggeado tenemos acceso a las funcionalidades para ver productos, carts y usuarios  -->
       {{#if loggedin}}
       <li>
@@ -25,7 +29,7 @@
         </a>
       </li>
       <li>
-        <a href="api/session/register">
+        <a href="/api/session/register">
           <img src="../images/newuser.png" alt="newuser">
           <span class="invisible">Register</span>
         </a>

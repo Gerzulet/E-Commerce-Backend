@@ -35,6 +35,7 @@ document.getElementById("cartButton").addEventListener('click', async (event) =>
 })
 
 const fetchMessage = document.getElementById("fetchMessage")
+const deleteMessage = document.getElementById("deleteMessage")
 
 const deleteButtons = document.querySelectorAll('#deleteProduct');
 
@@ -46,7 +47,7 @@ deleteButtons.forEach(button => {
     })
       .then(response => {
         if (!response.ok) {
-          fetchMessage.innerHTML = "No tienes permisos para eliminar este producto"
+          deleteMessage.innerHTML = "No tienes permisos para eliminar este producto"
         } else {
           window.location.href = "/api/products"
         }

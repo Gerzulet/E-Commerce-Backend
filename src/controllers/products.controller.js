@@ -94,7 +94,6 @@ class productController {
     const products = await productValidator.getProducts()
     try {
       await productValidator.deleteProduct(pid, role)
-
       res.status(200).render('products', { products, message: "Producto Eliminado" })
     } catch (error) {
       console.log(error.message)

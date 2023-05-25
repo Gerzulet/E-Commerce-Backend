@@ -47,12 +47,11 @@ const initializePassport = () => {
 
   passport.use('register', new LocalStrategy(
     { passReqToCallback: true, usernameField: 'email' }, async (req, username, password, done) => {
-      const { first_name, last_name, email, age, phone, role } = req.body;
-      console.log(first_name)
-      console.log(req.body)
+      const { first_name, last_name, email, age, phone } = req.body;
+      let role = "user"
 
 
-      if (!first_name || !last_name || !email || !/^[0-9]*$/.test(age) || !age || !/\+[0-9]+/i.test(phone) || !role) {
+      if (!first_name || !last_name || !email || !/^[0-9]*$/.test(age) || !age || !/\+[0-9]+/i.test(phone)) {
         CustomError.createError({
           name: "Error creating user",
           cause: generateUserErrorInfo({ first_name, last_name, email, age, phone, role }),

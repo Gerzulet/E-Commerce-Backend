@@ -33,7 +33,7 @@ class sessionsController {
 
   async postToRegister(req, res) {
     req.logger.info("Register successfully")
-    res.render('login', { message: "Te has registrado exitosamente" })
+    res.redirect("/api/session/login")
   }
 
   async failedRegister(req, res) {
@@ -46,19 +46,19 @@ class sessionsController {
     req.logger.debug(`Mail : ${email}`)
     req.logger.debug(`Password: ${password}`)
 
-
     const checkedAccount = await sessionValidator.checkAccount(email, password)
     const userToSign = new currentUserDTO(checkedAccount)
+    console.log(checkedAccount)
 
-    if (checkedAccount === 'NoMailNorPassword') return res.send('Mail or password missing')
-    if (checkedAccount === 'NoUser') return res.send('User has not been found')
-    if (checkedAccount === 'IncorrectPassword') return res.send('Incorrect Password')
+    if (checkedAccount === 'NoMailNorPassword') return res.status(404).json({ message: "No mail or password " })
+    if (checkedAccount === 'NoUser') return res.status(404).json({ message: "No User found" })
+    if (checkedAccount === 'IncorrectPassword') return res.status(404).json({ message: "Incorrect password" })
     if (checkedAccount) {
       await sessionServices.updateUser(checkedAccount._id, { last_connection: new Date() })
-      const token = jwt.sign({ user: userToSign.email, role: userToSign.role, phone: userToSign.phone, userID: checkedAccount._id }, 'coderSecret', { expiresIn: '40m' }, { withCredentials: false });
+      const token = jwt.sign({ user: userToSign.email, role: userToSign.role, phone: userToSign.phone, userID: checkedAccount._id, userName: checkedAccount.username }, 'coderSecret', { expiresIn: '40m' }, { withCredentials: false });
       res.cookie('coderCokieToken', token, { maxAge: 60 * 60 * 60 * 60, httpOnly: false, withCredentials: false });
       req.logger.info("User is logged in ")
-      res.redirect('/api/session/current')
+      res.redirect('/api')
 
 
     }
