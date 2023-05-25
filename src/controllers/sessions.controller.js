@@ -20,7 +20,7 @@ const transport = nodemailer.createTransport({
 class sessionsController {
 
   async getLoginPage(req, res) {
-    res.render('login')
+    res.render('login', { styleRoute: `<link href="/styles/login.css" rel="stylesheet">` })
   }
 
   async getCurrentProfile(req, res) {
@@ -28,7 +28,7 @@ class sessionsController {
   }
 
   async getRegisterPage(req, res) {
-    res.render('register')
+    res.render('register', { styleRoute: `<link href="/styles/register.css" rel="stylesheet">` })
   }
 
   async postToRegister(req, res) {

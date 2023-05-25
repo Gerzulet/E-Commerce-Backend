@@ -1,20 +1,19 @@
 import usersValidators from '../validators/users.validators.js'
 import usersValidator from '../validators/users.validators.js'
 
-
 class usersController {
 
 
   async getDocumentsPage(req, res) {
     req.logger.info("Documents page")
     let user = req.user
-    res.render('documents', { username: user.user, user: user.userID })
+    res.render('documents', { title: "Users", username: user.user, user: user.userID, style: `<link hrel="stylesheet" ref="../styles/register.css" >` })
   }
 
   async changeRolePage(req, res) {
     const users = await usersValidator.getUsers()
 
-    res.render('changerole', { users })
+    res.render('changerole', { users, style: `<link href="../styles/index.css" rel="stylesheet">` })
   }
 
   async changeRole(req, res) {

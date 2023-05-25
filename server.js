@@ -44,9 +44,9 @@ app.use("/api/docs", swaggerUi.serve, swaggerUi.setup(specs))
 
 
 // Midlewares
+app.use(express.static(path.join(__dirname, '/src/public')));
 app.set('views', __dirname + '/src/views')
 app.set('view engine', 'hbs')
-app.use(express.static(path.join(__dirname, '/src/public')));
 app.use(cookieParser())
 app.use(errorHandler)
 app.use(addLogger)

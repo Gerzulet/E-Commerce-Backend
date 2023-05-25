@@ -11,9 +11,9 @@ const router = Router()
 router.use('/products', productRoutes)
 router.use('/carts', cartRoutes)
 router.use('/chat', chatRoutes)
-router.use('/', viewsRoutes)
 router.use('/session', sessionRoutes)
 router.use('/users', userRoutes)
+router.use('/', viewsRoutes)
 
 
 export default router;
