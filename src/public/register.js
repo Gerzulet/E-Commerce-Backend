@@ -1,0 +1,74 @@
+
+console.log("linkeado")
+document.getElementById("registerForm").addEventListener('submit', async (event) => {
+
+  event.preventDefault()
+  console.log("En funcion register")
+
+
+  let data = {
+    first_name: document.getElementById('firstname').value,
+    last_name: document.getElementById('lastname').value,
+    age: document.getElementById('age').value,
+    phone: document.getElementById('phone').value,
+    password: document.getElementById('password').value,
+    email: document.getElementById('email').value,
+  }
+  console.log(data)
+
+
+  if (!data.first_name || !data.last_name || !data.email || !/^[0-9]*$/.test(data.age) || !data.age || !/\+[0-9]+/i.test(data.phone) || !data.password) {
+    iziToast.warning({
+      title: "Hey!",
+      message: "Llena los campos necesarios, en el modo que se sugiere"
+    })
+  } else {
+    let result;
+    await fetch(`/api/session/register`, {// 
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+      .then(response => {
+        console.log(response)
+        if (response.ok) {
+          iziToast.success({
+            title: "Usuario Creado!"
+          })
+          setTimeout(() => {
+            window.location.href = "/api/session/login"
+          }, 1800);
+        } else if (response.status === 500) {
+          iziToast.error({
+            title: "Ups",
+            message: "Ha ocurrido un problema desde del servidor"
+          })
+        } else {
+          result = response
+          return response.json()
+        }
+      }
+      )
+      .then(data => {
+        console.log(data)
+        console.log(result)
+        if (!result.ok) {
+          iziToast.error({
+            title: "Ha ocurrido un error",
+            message: data.message
+          })
+        }
+      })
+
+
+  }
+
+
+
+
+
+})
+
+

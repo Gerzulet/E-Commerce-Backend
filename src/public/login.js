@@ -27,7 +27,7 @@ document.getElementById("loginform").addEventListener('submit', async (event) =>
         })
         setTimeout(() => {
           window.location.href = "/api"
-        }, 3000);
+        }, 2000);
       } else {
         wrongresult = response
         return response.json()

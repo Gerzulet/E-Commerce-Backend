@@ -32,9 +32,16 @@ class sessionsController {
   }
 
   async postToRegister(req, res) {
-    req.logger.info("Register successfully")
-    res.redirect("/api/session/login")
+    console.log("Intentando registrar")
+    if (req.user.message === "Usuario ya existe") {
+      res.status(409).json({ message: "Usuaro ya existe" })
+    } else {
+      res.status(201).json({ message: "Usuario creado exitosamente" })
+
+    }
   }
+
+
 
   async logout(req, res) {
     req.logger.info("Session terminated")

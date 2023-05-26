@@ -51,39 +51,35 @@ const initializePassport = () => {
       let role = "user"
 
 
-      if (!first_name || !last_name || !email || !/^[0-9]*$/.test(age) || !age || !/\+[0-9]+/i.test(phone)) {
-        CustomError.createError({
-          name: "Error creating user",
-          cause: generateUserErrorInfo({ first_name, last_name, email, age, phone, role }),
-          message: "Error trying to register user",
-          code: EErrors.INVALID_TYPES_ERROR
-        })
-      }
-
-
 
 
 
       try {
-        let user = await usersDao.getUserByEmail(username)
+        let user = await usersDao.getUserByEmail(email)
+        console.log(user)
 
         if (user) {
           console.log('Usuario ya existe')
-          return done(null, false)
+          return done(null, { message: "Usuario ya existe" })
         }
 
 
 
 
+        if (first_name && last_name && email && age && phone) {
+
+          const createdUser = new usersDTO(first_name, last_name, email, age, phone, role)
+          createdUser.password = createHash(password)
 
 
-        const createdUser = new usersDTO(first_name, last_name, email, age, phone, role)
-        createdUser.password = createHash(password)
+          let result = await usersDao.createUser(createdUser)
+          return done(null, result)
+
+        }
 
 
-        let result = await usersDao.createUser(createdUser)
-        console.log(result)
-        return done(null, result)
+
+
       } catch (error) {
         done(error)
       }

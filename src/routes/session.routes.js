@@ -2,7 +2,6 @@ import { Router } from "express";
 import passport from 'passport'
 import passportCall from "../utils/passportCall.js";
 import sessionsController from "../controllers/sessions.controller.js";
-import authorization from "../utils/autorization.js";
 
 
 
