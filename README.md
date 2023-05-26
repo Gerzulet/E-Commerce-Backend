@@ -17,7 +17,8 @@ Tareas a realizar paralelamente.
    - [X] Revisar permisos para eliminar productos
    - [ ] Manejar respuestas con alertify o similar
   - [ ] Users
-  - [ ] Login
+   - [X] Manejar respuesta si se intenta acceder sin permisos
+  - [X] Login
    - [X] Redireccionar a HOME tras hacer login exitoso
    - [X] Manejar respuesta en caso de usuario incorrecto
   - [ ] Restore

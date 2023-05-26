@@ -41,12 +41,15 @@
       </li>
             {{#if loggedin}}
 
+
+            {{#if isAdmin}}
       <li>
         <a href="/api/users/premium">
           <img src="../images/users.png" alt="users">
           <span class="invisible">Users</span>
         </a>
       </li>
+      {{/if}}
       {{/if}}
     </ul>
   </nav>

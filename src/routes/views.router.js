@@ -8,16 +8,19 @@ const router = Router()
 
 router.get('/', (req, res) => {
   //Verificamos que hayamos iniciado sesion para ver las otras funcionalidades, DE TODAS MANERA SE VALIDA EL JWT, NO PUEDE ENTRAR CUALQUIERA
-  let verification = req.cookies.coderCokieToken ? true : false
+  let verification = req.cookies.coderCokieToken ? true : false // Verificacion de que hemos ingresado 
   let usuario;
   if (req.cookies.coderCokieToken) {
     usuario = jwt.verify(req.cookies.coderCokieToken, 'coderSecret')
   } else {
     usuario = "Invitado"
   }
+  console.log(usuario)
+  let isAdmin = usuario.role === "admin" ? true : false // Validacion para entrar en endpoint de users
   res.render('index', {
     styleRoute: `<link href="../styles/index.css" rel="stylesheet">`, loggedin: verification,
-    user: usuario.userName
+    user: usuario.userName,
+    isAdmin
   })
 })
 
