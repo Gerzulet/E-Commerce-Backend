@@ -1,8 +1,13 @@
 <body class="align">
   <nav class="navigation navigation--inline">
     {{#if loggedin}}
-    <div>
+    <div class="userinfo">
       <h4>Bienvenido: {{user}}</h4>
+      <div class="finishSession">
+        <a id="link" href="/api/session/logout">Terminar sesion</a>
+        <i class="fa fa-sign-out" aria-hidden="true"></i>
+        
+      </div>
       
     </div>
       {{/if}}

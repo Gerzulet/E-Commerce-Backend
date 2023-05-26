@@ -36,6 +36,13 @@ class sessionsController {
     res.redirect("/api/session/login")
   }
 
+  async logout(req, res) {
+    req.logger.info("Session terminated")
+    res.clearCookie('coderCokieToken')
+    res.redirect("/api")
+  }
+
+
   async failedRegister(req, res) {
     req.logger.error("Register did not work")
     res.send({ status: 'failure', message: "Ha ocurrido un problema en la registracion" })

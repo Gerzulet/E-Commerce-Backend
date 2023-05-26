@@ -8,9 +8,10 @@ Tareas a realizar paralelamente.
 
 - [ ] Trabajar en estilos de renders
   - [X] Index
-   - [X] Incluir user en pantalla principal
    - [ ] Agregar estilos para la ruta current (OPCIONAL)
-   - [ ] Agregar boton para salir de sesion
+    - [X] Incluir user en pantalla principal
+    - [X] Agregar boton para salir de sesion
+      - [X] Crear endpoint
   - [X] Products
    - [X] Al eliminar productos recargar pagina
    - [X] Revisar permisos para eliminar productos
@@ -18,7 +19,7 @@ Tareas a realizar paralelamente.
   - [ ] Users
   - [ ] Login
    - [X] Redireccionar a HOME tras hacer login exitoso
-   - [ ] Manejar respuesta en caso de usuario incorrecto
+   - [X] Manejar respuesta en caso de usuario incorrecto
   - [ ] Restore
   - [ ] Register
    - [ ] Verificar creacion de usuario

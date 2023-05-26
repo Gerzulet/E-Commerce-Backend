@@ -9,9 +9,16 @@ const router = Router()
 router.get('/', (req, res) => {
   //Verificamos que hayamos iniciado sesion para ver las otras funcionalidades, DE TODAS MANERA SE VALIDA EL JWT, NO PUEDE ENTRAR CUALQUIERA
   let verification = req.cookies.coderCokieToken ? true : false
-  const usuario = jwt.verify(req.cookies.coderCokieToken, 'coderSecret')
-  console.log(usuario.userName)
-  res.render('index', { styleRoute: `<link href="../styles/index.css" rel="stylesheet">`, loggedin: verification, user: usuario.userName })
+  let usuario;
+  if (req.cookies.coderCokieToken) {
+    usuario = jwt.verify(req.cookies.coderCokieToken, 'coderSecret')
+  } else {
+    usuario = "Invitado"
+  }
+  res.render('index', {
+    styleRoute: `<link href="../styles/index.css" rel="stylesheet">`, loggedin: verification,
+    user: usuario.userName
+  })
 })
 
 router.get('/loggerTest', (req, res) => {

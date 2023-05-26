@@ -130,3 +130,20 @@ svg {
   display: -ms-flexbox;
   display: flex;
 }
+
+.userinfo{
+  display: flex;
+  align-items: center;
+
+}
+
+
+.finishSession{
+  margin-left: 5em;
+  display: flex;
+  align-items: center;
+}
+i{
+  margin-left: 1em;
+  color: black;
+}
