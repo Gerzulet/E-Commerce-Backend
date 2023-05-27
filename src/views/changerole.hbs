@@ -1,4 +1,16 @@
-<h1>Ingresa el mail del usuario al que quieres cambiar el rol </h1>
+<div class="title">
+  <h1>Usuarios</h1>
+   <a href="/api/">
+    <img id="homeicon" src="/images/home.png" alt="home">
+  </a>
+
+ 
+</div >
+
+<br>
+<br>
+<div class="list">
+ <h3 id=""></h3> 
 <table>
 	<thead>
 		<tr>
@@ -6,6 +18,7 @@
 			<td>Email</td>
 			<td>Role</td>
 			<td>UID</td>
+			<td>Accion</td>
 		</tr>
 	</thead>
 	<tbody>
@@ -14,39 +27,78 @@
 			<td>{{this.username}}</td>
 			<td>{{this.email}}</td>
 			<td>{{this.role}}</td>
-			<td>{{this._id}}</td>
-
+			<td id="_id">{{this.id}}</td>
+      </td>
+      <td><button id="sendButton" data-id={{_id}} >Update to premium</button></td>
 		</tr>
         {{/each}}
 	</tbody>
 </table>
 
-
-<br>
-<br>
-<br>
-<br>
-<br>
-
-
-
+<div class="updateform">
+  
 <input id="uid" placeholder="Ingresa el UID del usuario">
-        <select class="form-select" name="role" id="role">
-      <option value="user" selected>User</option>
-      <option value="premium">Premium</option>
-
-    </select>
 
 
 <button id="sendButton">Cambiar rol</button>
 
-<h3 id="message">
-  {{{message}}}
-
-</h3>
 
 
+</div>
 
+
+
+
+
+<!-- <h1>Ingresa el mail del usuario al que quieres cambiar el rol </h1> -->
+<!-- <table> -->
+<!-- 	<thead> -->
+<!-- 		<tr> -->
+<!-- 			<td>Username</td> -->
+<!-- 			<td>Email</td> -->
+<!-- 			<td>Role</td> -->
+<!-- 			<td>UID</td> -->
+<!-- 		</tr> -->
+<!-- 	</thead> -->
+<!-- 	<tbody> -->
+<!--     {{#each users}} -->
+<!--             <tr> -->
+<!-- 			<td>{{this.username}}</td> -->
+<!-- 			<td>{{this.email}}</td> -->
+<!-- 			<td>{{this.role}}</td> -->
+<!-- 			<td>{{this._id}}</td> -->
+
+<!-- 		</tr> -->
+<!--         {{/each}} -->
+<!-- 	</tbody> -->
+<!-- </table> -->
+
+
+<!-- <br> -->
+<!-- <br> -->
+<!-- <br> -->
+<!-- <br> -->
+<!-- <br> -->
+
+
+
+<!-- <input id="uid" placeholder="Ingresa el UID del usuario"> -->
+<!--         <select class="form-select" name="role" id="role"> -->
+<!--       <option value="user" selected>User</option> -->
+<!--       <option value="premium">Premium</option> -->
+
+<!--     </select> -->
+
+
+<!-- <button id="sendButton">Cambiar rol</button> -->
+
+<!-- <h3 id="message"> -->
+
+<!-- </h3> -->
+
+
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js" integrity="sha512-Zq9o+E00xhhR/7vJ49mxFNJ0KQw1E1TMWkPTxrWcnpfEFDEXgUiwJHIKit93EW/XxE31HSI5GEOW06G6BF1AtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
       <script type="module" src="/changerole.js"> 
 
       </script>

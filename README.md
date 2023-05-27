@@ -18,6 +18,7 @@ Tareas a realizar paralelamente.
    - [ ] Manejar respuestas con alertify o similar
   - [ ] Users
    - [X] Manejar respuesta si se intenta acceder sin permisos
+   - [ ] Estilar
   - [X] Login
    - [X] Redireccionar a HOME tras hacer login exitoso
    - [X] Manejar respuesta en caso de usuario incorrecto

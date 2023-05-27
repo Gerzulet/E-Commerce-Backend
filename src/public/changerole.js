@@ -1,32 +1,42 @@
 
+const sendButtons = document.querySelectorAll('#sendButton');
 
-document.getElementById("sendButton").addEventListener('click', async (event) => {
-  event.preventDefault()
-  let uid = document.getElementById('uid').value
-  let data = {
-    role: document.getElementById('role').value,
-  }
-  console.log(data)
-  await fetch(`/api/users/premium/${uid}`, {// 
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
+sendButtons.forEach(button => {
+
+  button.addEventListener('click', async (event) => {
+    event.preventDefault()
+
+    let uid = event.target.dataset.id;
+    let data = {
+      role: "premium"
+    }
+    console.log(uid)
+    console.log(data)
+    await fetch(`/api/users/premium/${uid}`, {// 
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+      .then(response => {
+        if (response.ok) {
+          iziToast.success({
+            title: "Usuario actualizado!",
+            message: "Recargue la pagina para comprobar los cambios"
+          })
+          window.location.href = "/api/users/premium"
+        } else {
+          iziToast.error({
+            title: "No se ha actualizado el usuario",
+            message: "El usuario no tiene los documentos necesarios"
+          })
+        }
+      })
+      .catch(error => {
+        console.log(error)
+      })
+
   })
-    .then(response => {
-      if (response.ok) {
-        console.log(response)
-        let message = document.getElementById("message").textContent = "Cambios realizados, recargue la pagina"
-      } else {
-        let message = document.getElementById("message").textContent = "EL usuario no tiene todos los documentos actualizados"
-      }
-    })
-    .catch(error => {
-      console.log(error)
-    })
-
-
 })
-
 
