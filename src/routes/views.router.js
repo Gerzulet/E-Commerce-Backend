@@ -12,8 +12,12 @@ router.get('/', (req, res) => {
   let usuario;
   if (req.cookies.coderCokieToken) {
     usuario = jwt.verify(req.cookies.coderCokieToken, 'coderSecret')
+
   } else {
-    usuario = "Invitado"
+    usuario = {
+      userName: "Invitado",
+      role: 'user'
+    }
   }
   console.log(usuario)
   let isAdmin = usuario.role === "admin" ? true : false // Validacion para entrar en endpoint de users

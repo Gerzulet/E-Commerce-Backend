@@ -2,6 +2,24 @@ let uid = document.getElementById("UID").textContent
 let route = `/api/users/${uid}/documents`
 
 
+
+document.querySelectorAll("form").forEach(form => {
+  form.addEventListener("change", event => {
+    let fileUploadField = event.target;
+    let fileUploadWrapper = fileUploadField.closest(".file-upload-wrapper");
+    fileUploadWrapper.setAttribute("data-text", fileUploadField.files[0].name);
+    // Mostrar el nombre del archivo en el campo de entrada
+    let fileNameInput = fileUploadField.closest("form").querySelector("input[type='text']");
+    if (fileNameInput) {
+      fileNameInput.value = fileUploadField.files[0].name;
+    }
+  });
+});
+
+
+
+
+
 async function uploadFile(formInfo, inputInfo, event) {
   const form = document.getElementById(`${formInfo}`)
   const formData = new FormData(form)

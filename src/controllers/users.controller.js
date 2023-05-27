@@ -7,7 +7,7 @@ class usersController {
   async getDocumentsPage(req, res) {
     req.logger.info("Documents page")
     let user = req.user
-    res.render('documents', { title: "Users", username: user.user, user: user.userID, style: `<link hrel="stylesheet" ref="../styles/register.css" >` })
+    res.render('documents', { title: "Users", username: user.user, user: user.userID, style: `<link  href="/styles/documents.css" rel="stylesheet">` })
   }
 
   async changeRolePage(req, res) {
