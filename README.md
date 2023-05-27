@@ -16,17 +16,18 @@ Tareas a realizar paralelamente.
    - [X] Al eliminar productos recargar pagina
    - [X] Revisar permisos para eliminar productos
    - [ ] Manejar respuestas con alertify o similar
-  - [ ] Users
+  - [ ] Carts
+  - [X] Users
    - [X] Manejar respuesta si se intenta acceder sin permisos
    - [X] Estilar
-   - [ ] Estilar carga de documentos
+   - [X] Estilar carga de documentos
   - [X] Login
    - [X] Redireccionar a HOME tras hacer login exitoso
    - [X] Manejar respuesta en caso de usuario incorrecto
   - [ ] Restore
   - [ ] Register
-   - [ ] Verificar creacion de usuario
-       - [ ] Manejar respuesta desde el front
+   - [X] Verificar creacion de usuario
+       - [X] Manejar respuesta desde el front
    - [ ] Añadir mail para creacion de usuario
 - [ ] Refinar manejo de logs 
 - [ ] Manejar cambios en renderizados a traves del cliente y no desde el servidor

@@ -23,7 +23,7 @@ class cartController {
     try {
       const result = await cartValidator.getCarts(limit)
       req.logger.debug(result)
-      res.render('carts', { result })
+      res.render('carts', { result, styleRoute: `<link href="/styles/carts.css" rel="stylesheet">` })
     } catch (error) {
       res.json(error)
     }

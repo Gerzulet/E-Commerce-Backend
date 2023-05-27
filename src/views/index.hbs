@@ -39,16 +39,25 @@
           <span class="invisible">Register</span>
         </a>
       </li>
-            <li>
-        <a href="/api/users/documents">
-          <img src="../images/resume.png" alt="newuser">
-          <span class="invisible">Profile</span>
+      <li>
+        <a href="/api/docs">
+          <img src="../images/document.png" alt="documentation">
+          <span class="invisible">Documentation</span>
         </a>
       </li>
+
+
             {{#if loggedin}}
 
 
             {{#if isAdmin}}
+            <li>
+        <a href="/api/users/documents">
+          <img src="../images/resume.png" alt="User Documents">
+          <span class="invisible">Profile</span>
+        </a>
+      </li>
+
       <li>
         <a href="/api/users/premium">
           <img src="../images/users.png" alt="users">
