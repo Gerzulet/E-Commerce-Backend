@@ -16,7 +16,7 @@ document.getElementById("newCart").addEventListener('submit', async (event) => {
         })
         setTimeout(() => {
           window.location.href = "/api/carts"
-        }, 2000);
+        }, 1300);
       } else {
         result = response
         return response.json()

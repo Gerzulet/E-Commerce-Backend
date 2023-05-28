@@ -19,6 +19,9 @@ Tareas a realizar paralelamente.
    - [X] Al eliminar productos recargar pagina
    - [X] Revisar permisos para eliminar productos
    - [ ] Manejar respuestas con alertify o similar
+   - [ ] Estilar carga de productos
+   - [ ] Habilitar render para modificacion de productos
+   - [ ] Rediseñar carga de producto en carrito
 
 
   - [ ] Carts
@@ -38,14 +41,16 @@ Tareas a realizar paralelamente.
    - [X] Manejar respuesta en caso de usuario incorrecto
 
 
-  - [ ] Restore
+  - [X] Restore
    - [X] Estilar
    - [X] Manejar respuestas ante informacion incorrecta
 
   - [ ] Register
    - [X] Verificar creacion de usuario
        - [X] Manejar respuesta desde el front
-   - [ ] Añadir mail para creacion de usuario
+       - [ ] Añadir mail para creacion de usuario
+
+- [ ] Habilitar rutas con respuestas JSON
 - [ ] Refinar manejo de logs 
 - [ ] Manejar cambios en renderizados a traves del cliente y no desde el servidor
 - [ ] Refinar testing

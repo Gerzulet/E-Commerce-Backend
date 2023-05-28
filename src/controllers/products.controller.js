@@ -51,7 +51,7 @@ class productController {
   async createProduct(req, res) {
     const { title, description, category, price, thumbnail, code, stock } = req.body;
     !req.file && console.log("No se ha guardado la imagen")
-
+    req.logger.debug("Creando producto")
     let thumbnailName
     if (!req.file) {
       thumbnailName = "Sin imagen"
