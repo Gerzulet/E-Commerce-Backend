@@ -13,7 +13,10 @@ img:hover, button:hover{
   transform:scale(1.1)
 }
 
-
+.darkened-row {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: rgba(255, 255, 255, 0.7);
+}
 
 
 .title {

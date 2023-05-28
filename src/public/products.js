@@ -1,4 +1,129 @@
 
+
+// Obtener todas las filas de la tabla
+var rows = document.querySelectorAll("table tbody tr");
+
+// Agregar el botón y el evento de clic a cada fila
+rows.forEach(function(row) {
+  var modifyButton = document.createElement("button");
+  modifyButton.innerText = "Modificar";
+  modifyButton.addEventListener("click", function() {
+    toggleRowEdit(row);
+  });
+
+  var actionCell = document.createElement("td");
+  actionCell.appendChild(modifyButton);
+
+  row.appendChild(actionCell);
+});
+
+function toggleRowEdit(row) {
+  if (row.classList.contains("editable-row")) {
+    // Si la fila está en modo edición, enviar los cambios al servidor
+    sendRowData(row);
+    disableRowEdit(row);
+  } else {
+    // Si la fila no está en modo edición, activar la edición
+    enableRowEdit(row);
+    darkenOtherRows(row);
+  }
+}
+
+function enableRowEdit(row) {
+  var cells = row.cells;
+  for (var i = 0; i < cells.length; i++) {
+    // Excluir la columna "ID de producto" de la edición
+    if (i !== 5) {
+      cells[i].setAttribute("contenteditable", "true");
+    }
+  }
+
+  row.classList.add("editable-row");
+}
+
+function disableRowEdit(row) {
+  var cells = row.cells;
+  for (var i = 0; i < cells.length; i++) {
+    cells[i].removeAttribute("contenteditable");
+  }
+
+  row.classList.remove("editable-row");
+}
+
+function darkenOtherRows(row) {
+  var allRows = document.querySelectorAll("table tbody tr");
+  allRows.forEach(function(r) {
+    if (r !== row) {
+      r.classList.add("darkened-row");
+    }
+  });
+}
+
+// Función para enviar los datos de una fila modificada al servidor
+function sendRowData(row) {
+  var rowData = {
+    title: row.cells[0].innerText,
+    description: row.cells[1].innerText,
+    category: row.cells[2].innerText,
+    price: parseFloat(row.cells[3].innerText.replace("$", "")),
+    stock: parseInt(row.cells[4].innerText),
+  };
+  console.log(rowData)
+  let pid = row.cells[5].innerText
+  console.log(pid)
+
+
+  fetch(`/api/products/${pid}`, {
+
+
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(rowData)
+  })
+    .then(function(response) {
+      console.log(response)
+      if (response.ok) {
+        // Si la respuesta es exitosa, puedes realizar acciones adicionales si es necesario
+        iziToast.success({
+          title: "Producto modificado exitosamente!"
+        })
+        setTimeout(() => {
+          window.location.href = "/api/products"
+        }, 1500);
+      } else {
+        iziToast.error({
+          title: "No se ha podido modificar el producto"
+        })
+        throw new Error("Error en la solicitud");
+      }
+    })
+    .catch(function(error) {
+      console.error(error);
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 document.getElementById("nuevoProducto").addEventListener('submit', async (event) => {
 
   event.preventDefault()
