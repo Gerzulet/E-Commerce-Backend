@@ -17,6 +17,9 @@ Tareas a realizar paralelamente.
    - [X] Revisar permisos para eliminar productos
    - [ ] Manejar respuestas con alertify o similar
   - [ ] Carts
+   - [ ] Manejar respuestas con alertify o similar
+   - [X] Estilar detalles de carritos
+   - [ ] Manejar casos en que intentamos solicitar mas productos de los que hay en stock
   - [X] Users
    - [X] Manejar respuesta si se intenta acceder sin permisos
    - [X] Estilar

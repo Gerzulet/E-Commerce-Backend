@@ -34,7 +34,7 @@ class cartController {
     try {
       const result = await cartValidator.getCartById(req.params.cid)
       req.logger.debug(`Resultado de getCartbyId en controler ${result}`)
-      res.render('cartById', { result, title: "Search Cart" })
+      res.render('cartById', { result, title: "Search Cart", styleRoute: `<link href="/styles/cartbyid.css" rel="stylesheet">` })
     } catch (error) {
       res.status(404).json(error.message)
     }
