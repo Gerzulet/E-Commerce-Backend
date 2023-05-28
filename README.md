@@ -22,7 +22,7 @@ Tareas a realizar paralelamente.
 
 
   - [ ] Carts
-   - [ ] Manejar respuestas con alertify o similar
+   - [X] Manejar respuestas con alertify o similar
    - [X] Estilar detalles de carritos
    - [ ] Manejar casos en que intentamos solicitar mas productos de los que hay en stock
 
@@ -39,8 +39,8 @@ Tareas a realizar paralelamente.
 
 
   - [ ] Restore
-   - [ ] Estilar
-   - [ ] Manejar respuestas ante informacion incorrecta
+   - [X] Estilar
+   - [X] Manejar respuestas ante informacion incorrecta
 
   - [ ] Register
    - [X] Verificar creacion de usuario

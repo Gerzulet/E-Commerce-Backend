@@ -67,3 +67,5 @@ error: Contraseña Repetida
 error: Contraseña Repetida
 error: Contraseña Repetida
 error: Contraseña Repetida
+fatal: Este es un log a nivel fatal
+error: Este es un log a nivel error
