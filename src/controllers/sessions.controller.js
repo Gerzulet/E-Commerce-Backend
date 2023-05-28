@@ -85,7 +85,7 @@ class sessionsController {
   }
   async getRestorePage(req, res) {
     req.logger.info("To restore password")
-    res.render('restore')
+    res.render('restore', { styleRoute: `<link href="/styles/restore.css" rel="stylesheet">` })
 
   }
 
@@ -95,14 +95,16 @@ class sessionsController {
     const { email } = req.body;
     req.logger.debug(`Email enviado para restaurar contraseña: ${email}`)
 
-    const token = await sessionValidator.restore(email)
 
-    if (token) {
-      await transport.sendMail({
-        from: 'German <german.alejandrozulet@gmail.com>',
-        to: email,
-        subject: 'Restore password',
-        html: `
+
+    try {
+      const token = await sessionValidator.restore(email)
+      if (token) {
+        await transport.sendMail({
+          from: 'German <german.alejandrozulet@gmail.com>',
+          to: email,
+          subject: 'Restore password',
+          html: `
          <div>
           <h1> Hi! You can restore your password, follow this link</h1>
 <h3>http://localhost:${config.PORT}/api/session/updateUser/${token}</h3>
@@ -110,14 +112,19 @@ class sessionsController {
         </div> 
 `, attachments: []
 
-      })
+        })
 
-      res.render("restore", { message: "Un mail te ha sido enviado" })
+        res.status(200).json({ message: "Se te ha enviado un mail, abrelo y restaura tu contraseña" })
 
-    } else {
-      res.render('restore', { message: "User not found" })
+      } else {
+        res.status(404).json({ message: "No se ha encontrado el usuario" })
+      }
+
+
+    } catch (error) {
+      res.status(404).json({ message: error.message, error: error })
+
     }
-
 
 
   }
@@ -133,7 +140,9 @@ class sessionsController {
     if (!response.token) {
       res.render('restore', {
         update: false,
-        message: "Token inexistente"
+        message: "Token inexistente",
+        styleRoute: `<link href="/styles/restore.css" rel="stylesheet">`
+
       })
     }
     req.logger.debug(`La respuesta del servidor con respecto al token ha sido ${response}`)
@@ -148,13 +157,14 @@ class sessionsController {
     } else if (response) {
       res.render('restore', {
         update: true,
-        token: response[0].token,
-        message: ""
+        token: response.token,
+        message: "",
+        styleRoute: `<link href="/styles/restore.css" rel="stylesheet">`
       })
 
     }
     else {
-      res.render('restore', { message: "No auth token" })
+      res.render('restore', { message: "Debes estar logueado en esta cuenta para realizar cambios" })
     }
   }
 

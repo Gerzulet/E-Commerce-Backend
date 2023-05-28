@@ -1,68 +1,85 @@
+<div class="container-login100">
+  <form id="mailform" >
  {{#unless update}}
-<form method="post" action="/api/session/restore">
 
-  <label for="text">Indicanos cual es tu mail</label>
-  <input type="text" name="email"  required>
-  <button type="submit">Enviar </button>
-</form>
 
+
+
+<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+	<input id="email" class="input100" type="text" name="email" placeholder="Email">
+	<span class="focus-input100"></span>
+	<span class="symbol-input100">
+		<i class="fa fa-envelope" aria-hidden="true"></i>
+	</span>
+</div>
+					<div class="container-login100-form-btn">
+						<button  type="submit" class="login100-form-btn">
+							Restaurar contraseña
+						</button>
+					</div>
+
+  
+
+ </div>
 
 {{updateUserMessage}}
   {{/unless}}
+  </form>
+
+ <div class="container-login100">
+
 
  <h2 id="mailMessage"></h2> 
- <h3 id='token'>{{token}}</h3>
  {{#if update}}
+
+
+ <h5  id="token">{{token}}</h5>
+
+
  <form  id="form" style="display:flex;  flex-direction:column;"  >
-   <label style="padding-top: 10px;" for="text">Indicanos tu nueva contraseña</label>
-  <input id="newPassword" type="password" name="newPassword" required> 
-  <label  style="padding-top: 10px;" for="text">Escriba nuevamente su nueva contraseña</label>
-  <input type="password" name="confirmPassword"   required title="Ingrese la misma contraseña que arriba">
-  <button id="enviarPeticion" type="submit">Enviar </button>
+<span class="login100-form-title">
+  Restaura tu contraseña
+</span>
+		<div class="wrap-input100 validate-input" data-validate = "Password is required">
+	<input id="newPassword" class="input100" type="password" name="newPassword" placeholder="Indicanos tu nueva contraseña">
+	<span class="focus-input100"></span>
+	<span class="symbol-input100">
+    <i class="fa fa-key" aria-hidden="true"></i>
+	</span>
+</div>
+  							<div class="wrap-input100 validate-input" data-validate = "Password is required">
+	<input id="password" class="input100" type="password" name="confirmPassword" placeholder="Ingresa la misma contraseña">
+	<span class="focus-input100"></span>
+	<span class="symbol-input100">
+    <i class="fa fa-key" aria-hidden="true"></i>
+	</span>
+</div>
+
+<div class="container-login100-form-btn">
+	<button id="enviarPeticion" class="login100-form-btn">
+    Restaurar contraseña
+	</button>
+</div>
+
+
+  <!--  <label style="padding-top: 10px;" for="text">Indicanos tu nueva contraseña</label> -->
+  <!-- <input id="newPassword" type="password" name="newPassword" required>  -->
+  <!-- <label  style="padding-top: 10px;" for="text">Escriba nuevamente su nueva contraseña</label> -->
+  <!-- <input type="password" name="confirmPassword"   required title="Ingrese la misma contraseña que arriba"> -->
+  <!-- <button id="enviarPeticion" type="submit">Enviar </button> -->
 </form>
 
 
 
 
   {{/if}}
-  {{message}}
-
-<h3 id="fetchResponse"></h3>
 
 
-<script>
-const token= document.getElementById('token').innerHTML
-
-const enviar= document.getElementById("form").addEventListener('submit', (event) => {
-  event.preventDefault()
-    console.log(token)
-    console.log("Enviando peticion")
-
-const fetchResponse = document.getElementById("fetchResponse")
-const data = {
-  newPassword : document.getElementById('newPassword').value
-  }
 
 
-  fetch(`/api/session/updateUser/${token}`, {
-  method: 'PUT',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body:JSON.stringify(data)
-})
-  .then(response => {
-    if (response.ok) {
-      console.log('Recurso actualizado correctamente');
-      window.location.href= "/api/session/login"
+ </div>
 
-    } else {
-      fetchResponse.innerHTML = "Ha ocurrido un error, fijate que no hayas repetido la contraseña anterior"
-      console.log(response)
-    } 
-  })
-  .catch(error => console.error(error));
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js" integrity="sha512-Zq9o+E00xhhR/7vJ49mxFNJ0KQw1E1TMWkPTxrWcnpfEFDEXgUiwJHIKit93EW/XxE31HSI5GEOW06G6BF1AtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="module" src="/restore.js">
 
-
-  })
 </script>

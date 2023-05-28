@@ -7,27 +7,41 @@ E-Commerce, realizado en el lado del backend, en base a la entrega final de CODE
 Tareas a realizar paralelamente. 
 
 - [ ] Trabajar en estilos de renders
+
   - [X] Index
    - [ ] Agregar estilos para la ruta current (OPCIONAL)
     - [X] Incluir user en pantalla principal
     - [X] Agregar boton para salir de sesion
       - [X] Crear endpoint
-  - [X] Products
+
+
+  - [ ] Products
    - [X] Al eliminar productos recargar pagina
    - [X] Revisar permisos para eliminar productos
    - [ ] Manejar respuestas con alertify o similar
+
+
   - [ ] Carts
    - [ ] Manejar respuestas con alertify o similar
    - [X] Estilar detalles de carritos
    - [ ] Manejar casos en que intentamos solicitar mas productos de los que hay en stock
+
+
   - [X] Users
    - [X] Manejar respuesta si se intenta acceder sin permisos
    - [X] Estilar
    - [X] Estilar carga de documentos
+
+
   - [X] Login
    - [X] Redireccionar a HOME tras hacer login exitoso
    - [X] Manejar respuesta en caso de usuario incorrecto
+
+
   - [ ] Restore
+   - [ ] Estilar
+   - [ ] Manejar respuestas ante informacion incorrecta
+
   - [ ] Register
    - [X] Verificar creacion de usuario
        - [X] Manejar respuesta desde el front
@@ -39,6 +53,8 @@ Tareas a realizar paralelamente.
 - [ ] Pasar a .env variables e informacion sensible (cookies secrets, etc..)
 
 Desde el router de /api/users, crear tres rutas:
+
+
 - [X] GET  /  deberá obtener todos los usuarios, éste sólo debe devolver los datos principales como nombre, correo, tipo de cuenta (rol)
 
 - [ ] DELETE / deberá limpiar a todos los usuarios que no hayan tenido conexión en los últimos 2 días. (puedes hacer pruebas con los últimos 30 minutos, por ejemplo). Deberá enviarse un correo indicando al usuario que su cuenta ha sido eliminada por inactividad

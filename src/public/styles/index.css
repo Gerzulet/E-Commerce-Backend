@@ -5,8 +5,8 @@ h4 {
   color: black;
 }
 img {
-  height: 5em;
-  width: 5em;
+  height: 4em;
+  width: 4em;
 }
 .invisible {
   left: -999px;
@@ -147,3 +147,28 @@ i{
   margin-left: 1em;
   color: black;
 }
+
+.align {
+	-webkit-animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+	        animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+

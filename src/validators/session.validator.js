@@ -38,7 +38,9 @@ class sessionValidator {
 
   async validateToken(token) {
     let response = await sessionServices.getUserByToken(token)
-    if (response.tokenDate === undefined) return false;
+    if (response[0].tokenDate === undefined) return false;
+    console.log("Desde validate token")
+    console.log(response)
 
     try {
       const fechaInicial = new Date()
@@ -53,10 +55,13 @@ class sessionValidator {
 
       if (diferenciaEnSegundos > 3600) {
         response = 'token caducado'
+        console.log("Paso mas de una hora")
         return response
       }
       else {
-        return response
+        console.log("Token correcto enviado")
+        console.log(response)
+        return response[0]
       }
 
 

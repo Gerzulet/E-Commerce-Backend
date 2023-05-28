@@ -63,3 +63,7 @@ error: No se ha actualizado el producto en el carrito
 error: Error editando producto: 
 error: Something has happened Cannot set headers after they are sent to the client {"code":"ERR_HTTP_HEADERS_SENT","stack":"Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client\n    at new NodeError (node:internal/errors:399:5)\n    at ServerResponse.setHeader (node:_http_outgoing:644:11)\n    at ServerResponse.header (/home/germansz/Programacion/Backend/mocha/node_modules/express/lib/response.js:794:10)\n    at ServerResponse.send (/home/germansz/Programacion/Backend/mocha/node_modules/express/lib/response.js:174:12)\n    at ServerResponse.json (/home/germansz/Programacion/Backend/mocha/node_modules/express/lib/response.js:278:15)\n    at createCart (file:///home/germansz/Programacion/Backend/mocha/src/controllers/carts.controller.js:58:23)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)"}
 error: Error eliminando producto: 
+error: Contraseña Repetida
+error: Contraseña Repetida
+error: Contraseña Repetida
+error: Contraseña Repetida
