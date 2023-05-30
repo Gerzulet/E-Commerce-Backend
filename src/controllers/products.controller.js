@@ -21,6 +21,23 @@ class productController {
       res.json(error)
     }
   }
+  async getProductsJson(req, res) {
+    //Funcionalidad normal de API devolviendo objeto JSON
+    let limit = parseInt(req.query.limit)
+    let query = req.query.query || null
+    let sort = parseInt(req.query.sort)
+    let page = parseInt(req.query.page)
+
+
+    try {
+      const products = await productValidator.getProducts(limit, JSON.parse(query), sort, page)
+      res.json(products)
+    } catch (error) {
+      req.logger.error(`Ha ocurrido un error ${error.message}`)
+      res.json(error)
+    }
+  }
+
 
   async getMockingProducts(req, res) {
     const products = await productValidator.getMockingProducts()
@@ -36,11 +53,15 @@ class productController {
 
   async getProductById(req, res) {
     const pid = req.params.pid
+
+
     try {
-      let products = {}
-      products.docs = await productValidator.getProductById(pid)
+      let products = { docs: [] }
+      // products.docs = await productValidator.getProductById(pid)
+      let product = await productValidator.getProductById(pid)
+      products.docs.push(product)
       req.logger.debug(`Producto encontrado ${products}`)
-      res.render('products', { products, title: "Search" })
+      res.render('products', { products, title: "Search", styleRoute: `<link href="/styles/products.css" rel="stylesheet">` })
     }
     catch (Error) {
       console.log(Error)

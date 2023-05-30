@@ -12,6 +12,7 @@ import authorization from "../utils/autorization.js";
 const router = Router()
 
 router.get('/', passportCall('jwt'), authorization(['admin', 'premium', 'user']), passport.authenticate('jwt', { session: false }), productsController.getProducts) // ✅
+router.get('/json', passportCall('jwt'), authorization(['admin', 'premium', 'user']), passport.authenticate('jwt', { session: false }), productsController.getProductsJson) // ✅
 router.get('/mockingproducts', productsController.getMockingProducts)// ✅
 router.get('/:pid', productsController.getProductById)// ✅
 router.post('/', passportCall('jwt'), authorization(['admin', 'premium']), passport.authenticate('jwt', { session: false }), uploader.single('thumbnail'), productsController.createProduct)

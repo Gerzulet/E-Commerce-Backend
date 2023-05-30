@@ -1,17 +1,66 @@
+// Busqueda de productos
+document.getElementById("productSearch").addEventListener('submit', async (event) => {
+  event.preventDefault()
+  console.log("Iniciando busqueda")
+  let nombreProducto = document.getElementById("searchTitle").value
 
+
+  fetch('/api/products/json')
+    .then(response => response.json())
+    .then(data => {
+      // Buscar el producto por nombre en el array de productos
+      console.log(data.docs)
+      const productoEncontrado = data.docs.find(producto => producto.title === nombreProducto);
+
+
+      if (productoEncontrado) {
+        const productoId = productoEncontrado._id;
+
+        // Realizar la segunda petición Fetch utilizando el ID del producto
+        fetch(`/api/products/${productoId}`)
+          .then(res => {
+            if (res.ok) {
+              iziToast.success({
+                title: "Producto encontrado"
+              })
+              setTimeout(() => {
+                window.location.href = `/api/products/${productoId}`
+              }, 1000);
+            } else {
+              iziToast.error(
+                { title: "Producto no encontrado" }
+              )
+            }
+          })
+          .catch(error => {
+            console.log('Error al buscar el producto en la base de datos:', error);
+          });
+      } else {
+        iziToast.error({
+          title: "No hay ningun producto con ese nombre"
+        })
+        // Resto de la lógica...
+      }
+    })
+    .catch(error => {
+      console.log('Error al obtener los productos de la API:', error);
+    });
+
+
+})
 
 // Obtener todas las filas de la tabla
-var rows = document.querySelectorAll("table tbody tr");
+let rows = document.querySelectorAll("table tbody tr");
 
 // Agregar el botón y el evento de clic a cada fila
 rows.forEach(function(row) {
-  var modifyButton = document.createElement("button");
+  let modifyButton = document.createElement("button");
   modifyButton.innerText = "Modificar";
   modifyButton.addEventListener("click", function() {
     toggleRowEdit(row);
   });
 
-  var actionCell = document.createElement("td");
+  let actionCell = document.createElement("td");
   actionCell.appendChild(modifyButton);
 
   row.appendChild(actionCell);
@@ -30,8 +79,8 @@ function toggleRowEdit(row) {
 }
 
 function enableRowEdit(row) {
-  var cells = row.cells;
-  for (var i = 0; i < cells.length; i++) {
+  let cells = row.cells;
+  for (let i = 0; i < cells.length; i++) {
     // Excluir la columna "ID de producto" de la edición
     if (i !== 5) {
       cells[i].setAttribute("contenteditable", "true");
@@ -42,8 +91,8 @@ function enableRowEdit(row) {
 }
 
 function disableRowEdit(row) {
-  var cells = row.cells;
-  for (var i = 0; i < cells.length; i++) {
+  let cells = row.cells;
+  for (let i = 0; i < cells.length; i++) {
     cells[i].removeAttribute("contenteditable");
   }
 
@@ -51,7 +100,7 @@ function disableRowEdit(row) {
 }
 
 function darkenOtherRows(row) {
-  var allRows = document.querySelectorAll("table tbody tr");
+  let allRows = document.querySelectorAll("table tbody tr");
   allRows.forEach(function(r) {
     if (r !== row) {
       r.classList.add("darkened-row");
@@ -61,7 +110,7 @@ function darkenOtherRows(row) {
 
 // Función para enviar los datos de una fila modificada al servidor
 function sendRowData(row) {
-  var rowData = {
+  let rowData = {
     title: row.cells[0].innerText,
     description: row.cells[1].innerText,
     category: row.cells[2].innerText,

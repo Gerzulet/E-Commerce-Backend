@@ -16,12 +16,13 @@ Tareas a realizar paralelamente.
 
 
   - [ ] Products
+   - [ ] Manejar busqueda y errores al momento de buscar productos
+   - [ ] Estilar carga de productos (Probar con modal )
+   - [ ] Rediseñar carga de producto en carrito
    - [X] Al eliminar productos recargar pagina
    - [X] Revisar permisos para eliminar productos
    - [X] Manejar respuestas con alertify o similar
-   - [ ] Estilar carga de productos
-   - [ ] Habilitar render para modificacion de productos
-   - [ ] Rediseñar carga de producto en carrito
+   - [X] Habilitar render para modificacion de productos
 
 
   - [ ] Carts
