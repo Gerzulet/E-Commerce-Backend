@@ -29,6 +29,7 @@ Tareas a realizar paralelamente.
    - [X] Manejar respuestas con alertify o similar
    - [X] Estilar detalles de carritos
    - [ ] Manejar casos en que intentamos solicitar mas productos de los que hay en stock
+   - [ ] Poder modificar cantidad de la tabla
 
 
   - [X] Users
@@ -51,7 +52,7 @@ Tareas a realizar paralelamente.
        - [X] Manejar respuesta desde el front
        - [ ] Añadir mail para creacion de usuario
 
-- [ ] Habilitar respuestas de servidor en json
+- [X] Habilitar respuestas de servidor en json
 - [ ] Refinar manejo de logs 
 - [ ] Manejar cambios en renderizados a traves del cliente y no desde el servidor
 - [ ] Refinar testing

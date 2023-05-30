@@ -11,9 +11,10 @@
   </a>
 
   </div>
-  <h2>CID: {{result._id}}</h2>
+  <h2>CID</h2>
+  <h2 id="cid">{{result._id}}</h2>
 <p>Si las cantidades solicitadas superan al stock actual, aunque adquieras el carrito, ningun producto se cargará, y permaneceran en el carrito.</p>
-<table>
+<table id="productTable">
 	<thead>
 		<tr>
 			<td>Title</td>
@@ -44,3 +45,21 @@
 	</tbody>
 </table>
 
+    <button id="openModalBtn"> Agregar producto</button>
+
+
+<div class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h3>Productos</h3>
+    <ul id="product-list"></ul>
+  </div>
+</div>
+
+
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js" integrity="sha512-Zq9o+E00xhhR/7vJ49mxFNJ0KQw1E1TMWkPTxrWcnpfEFDEXgUiwJHIKit93EW/XxE31HSI5GEOW06G6BF1AtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script type="module" src="/cartbyid.js">
+  
+</script>

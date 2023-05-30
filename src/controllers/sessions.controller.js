@@ -68,7 +68,7 @@ class sessionsController {
     if (checkedAccount === 'IncorrectPassword') return res.status(404).json({ message: "Incorrect password" })
     if (checkedAccount) {
       await sessionServices.updateUser(checkedAccount._id, { last_connection: new Date() })
-      const token = jwt.sign({ user: userToSign.email, role: userToSign.role, phone: userToSign.phone, userID: checkedAccount._id, userName: checkedAccount.username }, 'coderSecret', { expiresIn: '50m' }, { withCredentials: false });
+      const token = jwt.sign({ user: userToSign.email, role: userToSign.role, phone: userToSign.phone, userID: checkedAccount._id, userName: checkedAccount.username }, 'coderSecret');
       res.cookie('coderCokieToken', token, { maxAge: 60 * 60 * 60 * 60, httpOnly: false, withCredentials: false });
       req.logger.info("User is logged in ")
       res.redirect('/api')

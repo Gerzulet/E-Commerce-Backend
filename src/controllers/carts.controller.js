@@ -79,7 +79,7 @@ class cartController {
       const user = req.user
       await cartValidator.updateCart(cid, product, user)
       req.logger.info("Product has been updated")
-      res.send({ status: 200, payload: await cartValidator.getCartById(cid) })
+      res.status(200).json({ message: "Producto agregado al carrito", payload: await cartValidator.getCartById(cid) })
       responseSent = true
     } catch (error) {
       if (responseSent = false) {
