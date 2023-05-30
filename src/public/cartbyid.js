@@ -12,7 +12,7 @@ addToCartButtons.forEach(button => {
 
 function addToCart(productId, quantity) {
 
-
+  let result;
   let cid = document.getElementById("cid").textContent;
   fetch(`/api/carts/${cid}`, {
     method: 'PUT',
@@ -33,14 +33,23 @@ function addToCart(productId, quantity) {
       } else if (response.status !== 200) {
         iziToast.error({
           title: "Ups",
-          message: "Ha ocurrido un problema desde del servidor"
         })
-      } else {
         result = response
         return response.json()
       }
     }
     )
+    .then(data => {
+      console.log(data)
+      console.log(result)
+      if (!result.ok) {
+        iziToast.error({
+          title: "Ha ocurrido un error",
+          message: data.message
+        })
+      }
+    })
+
 
 }
 

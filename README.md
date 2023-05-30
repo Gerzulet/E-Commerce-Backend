@@ -9,14 +9,13 @@ Tareas a realizar paralelamente.
 - [ ] Trabajar en estilos de renders
 
   - [X] Index
-   - [ ] Agregar estilos para la ruta current (OPCIONAL)
     - [X] Incluir user en pantalla principal
     - [X] Agregar boton para salir de sesion
       - [X] Crear endpoint
 
 
-  - [ ] Products
-   - [ ] Rediseñar carga de producto en carrito
+  - [X] Products
+   - [X] Rediseñar carga de producto en carrito
    - [X] Manejar busqueda y errores al momento de buscar productos
    - [X] Estilar carga de productos (Probar con modal )
    - [X] Al eliminar productos recargar pagina
@@ -28,7 +27,7 @@ Tareas a realizar paralelamente.
   - [ ] Carts
    - [X] Manejar respuestas con alertify o similar
    - [X] Estilar detalles de carritos
-   - [ ] Manejar casos en que intentamos solicitar mas productos de los que hay en stock
+   - [X] Manejar casos en que intentamos solicitar mas productos de los que hay en stock
    - [ ] Poder modificar cantidad de la tabla
 
 
