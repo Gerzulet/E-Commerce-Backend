@@ -1,5 +1,7 @@
 <div class="title">
   <h1>Productos</h1>
+
+
   <a href="/api/carts">
     <label for="carts">Mira los carritos actuales</label>
     <img id="carticon" src="../images/carticon.png" alt="carrito">
@@ -63,45 +65,58 @@
  </div>
 
 
-
 <div class="uploadProducts">
+
+
   
 
 <h3 id="message"></h3>
 
-    <h3>Agregar producto a carrito </h3>
 
-    <div class="uploadtocart">
-      <input id="cid" type="text" name="cid" placeholder="Ingresa el ID del carrito" >
-      <input id="pid" type="text" name="pid"  placeholder="Ingresa el ID del producto">
-      <input id="quantity" type="text" name="quantity"  placeholder="Ingresa la cantidad">
-      <button id="cartButton">Agregar al carrito!</button>
-      <h3 "fetchMessage"></h3>
+    <button id="openModalBtn"> Agregar producto</button>
 
-      
 
-    </div>
 
-<h2>Agrega nuevos productos a la base de datos!</h2>
-
-<div class="uploadnewproduct">
-  
-<form  id="nuevoProducto" > 
-  <input type="text" name="title" placeholder="Nombre">
-  <input type="text" name="description" placeholder="Descripcion">
-  <input type="text" name="category" placeholder="Categoria">
-  <input type="text" name="price" placeholder="Precio">
-  <label for="file">Elige una imagen</label>
-  <input type="file" name="thumbnail" >
-  <input type="text" name="code" placeholder="Codigo">
-  <input type="text" name="stock" placeholder="stock">
-  <button>Enviar</button>
-</form>
-
+<div id="modal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <form id="nuevoProducto" class="vertical-form">
+      <div class="form-group">
+        <label for="title">Nombre:</label>
+        <input type="text" name="title" placeholder="Nombre">
+      </div>
+      <div class="form-group">
+        <label for="description">Descripción:</label>
+        <input type="text" name="description" placeholder="Descripción">
+      </div>
+      <div class="form-group">
+        <label for="category">Categoría:</label>
+        <input type="text" name="category" placeholder="Categoría">
+      </div>
+      <div class="form-group">
+        <label for="price">Precio:</label>
+        <input type="text" name="price" placeholder="Precio">
+      </div>
+      <div class="form-group">
+        <label for="file">Elige una imagen:</label>
+        <input type="file" name="thumbnail">
+      </div>
+      <div class="form-group">
+        <label for="code">Código:</label>
+        <input type="text" name="code" placeholder="Código">
+      </div>
+      <div class="form-group">
+        <label for="stock">Stock:</label>
+        <input type="text" name="stock" placeholder="Stock">
+      </div>
+      <button>Enviar</button>
+    </form>
+  </div>
+</div>
 </div>
 
 
-</div>
+
  <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js" integrity="sha512-Zq9o+E00xhhR/7vJ49mxFNJ0KQw1E1TMWkPTxrWcnpfEFDEXgUiwJHIKit93EW/XxE31HSI5GEOW06G6BF1AtA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
       <script type="module" src="/products.js">

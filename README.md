@@ -16,7 +16,7 @@ Tareas a realizar paralelamente.
 
 
   - [ ] Products
-   - [ ] Manejar busqueda y errores al momento de buscar productos
+   - [X] Manejar busqueda y errores al momento de buscar productos
    - [ ] Estilar carga de productos (Probar con modal )
    - [ ] Rediseñar carga de producto en carrito
    - [X] Al eliminar productos recargar pagina
