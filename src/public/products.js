@@ -5,7 +5,7 @@ document.getElementById("productSearch").addEventListener('submit', async (event
   let nombreProducto = document.getElementById("searchTitle").value
 
 
-  fetch('/api/products/json')
+  fetch('/api/products?json=true')
     .then(response => response.json())
     .then(data => {
       // Buscar el producto por nombre en el array de productos

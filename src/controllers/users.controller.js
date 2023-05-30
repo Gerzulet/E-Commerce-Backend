@@ -11,9 +11,11 @@ class usersController {
   }
 
   async changeRolePage(req, res) {
+    let json = req.query.json
     const users = await usersValidator.getUsers()
+    if (json) res.status(200).json(users)
+    else res.render('changerole', { users, style: `<link href="/styles/users.css" rel="stylesheet">` })
 
-    res.render('changerole', { users, style: `<link href="/styles/users.css" rel="stylesheet">` })
   }
 
   async changeRole(req, res) {

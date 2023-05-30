@@ -9,40 +9,28 @@ class productController {
     let query = req.query.query || null
     let sort = parseInt(req.query.sort)
     let page = parseInt(req.query.page)
+    let json = (req.query.json)
+    req.logger.debug(`Modo JSON : ${json}`)
 
     console.log(req.user)
 
     try {
       const products = await productValidator.getProducts(limit, JSON.parse(query), sort, page)
       req.logger.debug(products.docs)
-      res.render('products', { products, title: "Productos", styleRoute: `<link href="../styles/products.css" rel="stylesheet">` })
+      if (json) res.status(200).json(products)
+      else res.render('products', { products, title: "Productos", styleRoute: `<link href="../styles/products.css" rel="stylesheet">` })
     } catch (error) {
       req.logger.error(`Ha ocurrido un error ${error.message}`)
       res.json(error)
     }
   }
-  async getProductsJson(req, res) {
-    //Funcionalidad normal de API devolviendo objeto JSON
-    let limit = parseInt(req.query.limit)
-    let query = req.query.query || null
-    let sort = parseInt(req.query.sort)
-    let page = parseInt(req.query.page)
 
-
-    try {
-      const products = await productValidator.getProducts(limit, JSON.parse(query), sort, page)
-      res.json(products)
-    } catch (error) {
-      req.logger.error(`Ha ocurrido un error ${error.message}`)
-      res.json(error)
-    }
-  }
 
 
   async getMockingProducts(req, res) {
     const products = await productValidator.getMockingProducts()
     try {
-      res.render('mockingProducts', { products, title: "Mocking Products" })
+      res.json(products)
     } catch (error) {
       req.logger.error("Could not get mocked products")
       res.json(error)
@@ -53,6 +41,7 @@ class productController {
 
   async getProductById(req, res) {
     const pid = req.params.pid
+    const json = req.query.json
 
 
     try {
@@ -61,7 +50,9 @@ class productController {
       let product = await productValidator.getProductById(pid)
       products.docs.push(product)
       req.logger.debug(`Producto encontrado ${products}`)
-      res.render('products', { products, title: "Search", styleRoute: `<link href="/styles/products.css" rel="stylesheet">` })
+      if (json) res.status(200).json(products)
+      else res.render('products', { products, title: "Search", styleRoute: `<link href="/styles/products.css" rel="stylesheet">` })
+
     }
     catch (Error) {
       console.log(Error)

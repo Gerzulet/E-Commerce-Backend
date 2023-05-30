@@ -16,9 +16,9 @@ Tareas a realizar paralelamente.
 
 
   - [ ] Products
-   - [X] Manejar busqueda y errores al momento de buscar productos
-   - [ ] Estilar carga de productos (Probar con modal )
    - [ ] Rediseñar carga de producto en carrito
+   - [X] Manejar busqueda y errores al momento de buscar productos
+   - [X] Estilar carga de productos (Probar con modal )
    - [X] Al eliminar productos recargar pagina
    - [X] Revisar permisos para eliminar productos
    - [X] Manejar respuestas con alertify o similar
@@ -51,12 +51,15 @@ Tareas a realizar paralelamente.
        - [X] Manejar respuesta desde el front
        - [ ] Añadir mail para creacion de usuario
 
-- [ ] Habilitar rutas con respuestas JSON
+- [ ] Habilitar respuestas de servidor en json
 - [ ] Refinar manejo de logs 
 - [ ] Manejar cambios en renderizados a traves del cliente y no desde el servidor
 - [ ] Refinar testing
-- [ ] Documentar
+   - [ ] Agregar nuevas rutas jsons para pruebas integrales
+- [ ] Documentar 
+   - [ ] Agregar nueva ruta de jsons
 - [ ] Pasar a .env variables e informacion sensible (cookies secrets, etc..)
+- [ ] Agregar modulos de compresion
 
 Desde el router de /api/users, crear tres rutas:
 
