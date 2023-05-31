@@ -28,7 +28,7 @@ Tareas a realizar paralelamente.
    - [X] Manejar respuestas con alertify o similar
    - [X] Estilar detalles de carritos
    - [X] Manejar casos en que intentamos solicitar mas productos de los que hay en stock
-   - [ ] Poder modificar cantidad de la tabla
+   - [X] Poder modificar cantidad de la tabla
 
 
   - [X] Users

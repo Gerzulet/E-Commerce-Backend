@@ -93,11 +93,12 @@ class cartController {
   }
 
   async updateQuantityFromCart(req, res) {
-
+    req.logger.debug("Actualizando cantidad de producto")
     const { cid, pid } = req.params;
     const { quantity } = req.body;
-
     try {
+      console.log(`La cantidad es ${quantity}`)
+      console.table([cid, pid])
       await cartValidator.updateQuantityToCart(cid, pid, quantity)
       req.logger.info("Quantity of product has been updated")
       res.json({ message: "Quantity Updated", payload: await cartValidator.getCartById(cid) })

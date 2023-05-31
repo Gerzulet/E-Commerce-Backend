@@ -15,7 +15,10 @@ img:hover, button:hover{
 form{
   margin: 3em;
 }
-
+.darkened-row {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: rgba(255, 255, 255, 0.7);
+}
 h2{
   margin-left: 3em;
 }

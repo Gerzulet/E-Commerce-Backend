@@ -157,4 +157,138 @@ function fetchProductList() {
     });
 }
 
+// FUNCIONALIDAD PARA MODIFICAR STOCK DE CARRITO
+
+
+// Obtener todas las filas de la tabla
+let rows = document.querySelectorAll("table tbody tr");
+let originalQuantity = null;
+// Agregar el botón y el evento de clic a cada fila
+rows.forEach(function(row) {
+  let modifyButton = document.createElement("button");
+  modifyButton.innerText = "Modificar Cantidad";
+  modifyButton.addEventListener("click", function() {
+    toggleRowEdit(row);
+  });
+
+  let actionCell = document.createElement("td");
+  actionCell.appendChild(modifyButton);
+
+  row.appendChild(actionCell);
+});
+
+function toggleRowEdit(row) {
+  if (row.classList.contains("editable-row")) {
+    // Si la fila está en modo edición, enviar los cambios al servidor
+    sendRowData(row);
+    disableRowEdit(row);
+  } else {
+    // Si la fila no está en modo edición, activar la edición
+    enableRowEdit(row);
+    darkenOtherRows(row);
+  }
+}
+
+function enableRowEdit(row) {
+  let cells = row.cells;
+  for (let i = 0; i < cells.length; i++) {
+    // Excluir la columna "ID de producto" de la edición
+    if (i === 4) {
+      const quantityCell = document.createElement('td');
+      const quantityInput = document.createElement('input');
+      quantityInput.type = 'number';
+      quantityInput.min = 0;
+      quantityInput.max = parseInt(cells[i].innerText);
+      quantityInput.value = parseInt(cells[i].innerText);
+
+      // Al habilitar la edición, almacenar el contenido original de la celda
+      originalQuantity = cells[i].innerText;
+
+      quantityCell.appendChild(quantityInput);
+      cells[i].replaceWith(quantityCell);
+    }
+  }
+
+  row.classList.add("editable-row");
+}
+
+// function restrictToNumbers(event) {
+//   let input = event.target;
+//   let value = input.innerText;
+//   let numbersOnly = value.replace(/[^\d]/g, "");
+//   input.innerText = numbersOnly;
+// }
+function disableRowEdit(row) {
+  let cells = row.cells;
+  for (let i = 0; i < cells.length; i++) {
+    cells[i].removeAttribute("contenteditable");
+  }
+
+  // Obtener el input de cantidad modificado
+  const quantityInput = cells[4].querySelector("input");
+  if (quantityInput) {
+    const modifiedQuantity = quantityInput.value;
+    cells[4].innerText = modifiedQuantity;
+  }
+
+  row.classList.remove("editable-row");
+  let deactivate = true
+  darkenOtherRows(row, deactivate)
+}
+
+function darkenOtherRows(row, deactivate) {
+  let allRows = document.querySelectorAll("table tbody tr");
+  allRows.forEach(function(r) {
+    if ((r !== row) && !deactivate) {
+      r.classList.add("darkened-row");
+    } else {
+      r.classList.remove("darkened-row")
+    }
+  });
+}
+
+// Función para enviar los datos de una fila modificada al servidor
+async function sendRowData(row) {
+
+  let cid = document.getElementById("cid").textContent;
+  let quantity = parseInt(row.cells[4].querySelector("input").value);
+  let pid = row.cells[6].innerText
+
+
+
+  fetch(`/api/carts/${cid}/products/${pid}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ quantity })
+  })
+    .then(function(response) {
+      console.log(response)
+      if (response.ok) {
+        iziToast.success({
+          title: "Producto modificado exitosamente!"
+        })
+        setTimeout(() => {
+          window.location.href = `/api/carts/${cid}`
+        }, 500);
+      } else {
+        iziToast.error({
+          title: "No se ha podido modificar el producto"
+        })
+        throw new Error("Error en la solicitud");
+      }
+    })
+    .catch(function(error) {
+      console.error(error);
+    });
+}
+
+
+
+
+
+
+
+
 

@@ -1,3 +1,5 @@
+
+
 // Busqueda de productos
 document.getElementById("productSearch").addEventListener('submit', async (event) => {
   event.preventDefault()
@@ -48,6 +50,9 @@ document.getElementById("productSearch").addEventListener('submit', async (event
 
 
 })
+
+// FUNCIONALIDAD PARA MODIFICAR STOCK DE PRODUCTO
+
 
 // Obtener todas las filas de la tabla
 let rows = document.querySelectorAll("table tbody tr");
