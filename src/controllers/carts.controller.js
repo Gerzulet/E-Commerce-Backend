@@ -113,6 +113,8 @@ class cartController {
 
   async deleteProductFromCart(req, res) {
     const { cid, pid } = req.params;
+    console.log(cid)
+    console.log(pid)
     try {
       await cartValidator.deleteProductFromCart(cid, pid)
       req.logger.info("Product has been deleted from cart")

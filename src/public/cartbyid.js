@@ -6,6 +6,49 @@ addToCartButtons.forEach(button => {
     addToCart(productId);
   });
 });
+// Eliminar productos
+
+const deleteButtons = document.querySelectorAll('#deleteProduct');
+deleteButtons.forEach(button => {
+  button.addEventListener('click', event => {
+    const itemId = event.target.dataset.id;
+    let cid = document.getElementById("cid").textContent;
+    let result;
+    fetch(`/api/carts/${cid}/products/${itemId}`, {
+      method: 'DELETE'
+    })
+      .then(response => {
+        console.log(response)
+        if (response.ok) {
+          iziToast.success({
+            title: "Producto eliminado de carrito"
+          })
+          setTimeout(() => {
+            window.location.href = `/api/carts/${cid}`
+          }, 1200);
+        } else if (response.status !== 200) {
+          iziToast.error({
+            title: "Ups",
+          })
+          result = response
+          return response.json()
+        }
+      }
+      )
+      .then(data => {
+        if (!result.ok) {
+          iziToast.error({
+            title: "Ha ocurrido un error",
+            message: data.message
+          })
+        }
+      })
+
+
+
+  });
+});
+
 
 // Función para agregar un producto al carrito mediante una petición fetch
 

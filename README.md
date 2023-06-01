@@ -29,6 +29,7 @@ Tareas a realizar paralelamente.
    - [X] Estilar detalles de carritos
    - [X] Manejar casos en que intentamos solicitar mas productos de los que hay en stock
    - [X] Poder modificar cantidad de la tabla
+   - [ ] Agregar funcionalidad para borrar producto de carrito  desde cliente
 
 
   - [X] Users

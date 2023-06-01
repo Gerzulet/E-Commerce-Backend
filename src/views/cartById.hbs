@@ -36,7 +36,8 @@
 			<td>${{this.product.price}}</td>
 			<td>{{this.quantity}}</td>
 			<td>{{this.product.stock}}</td>
-			<td style="display:none">{{this._id}}</td>
+			<td id="_id" style="display:none">{{this._id}}</td>
+      <td><button id="deleteProduct" data-id={{_id}} >Eliminar</button></td>
 		</tr>
         {{/each}}
 
