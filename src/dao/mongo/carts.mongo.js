@@ -22,12 +22,14 @@ class cartDao {
   }
 
   async updateCart(cid, product) {
+
     return await cartModel.findByIdAndUpdate({ _id: cid },
       { $push: { products: product } },
       { new: true, useFindAndModify: false })
 
   }
   async updateQuantityToCart(cid, pid, quantity) {
+    console.log(cid, pid, quantity)
     await cartModel.findOneAndUpdate(
       {
         _id: cid,

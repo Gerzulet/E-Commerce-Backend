@@ -55,8 +55,9 @@ deleteButtons.forEach(button => {
 
 function addToCart(productId, quantity) {
 
-  let result;
+  let result = {};
   let cid = document.getElementById("cid").textContent;
+  console.log(productId)
   fetch(`/api/carts/${cid}`, {
     method: 'PUT',
     headers: {
@@ -86,10 +87,13 @@ function addToCart(productId, quantity) {
       console.log(data)
       console.log(result)
       if (!result.ok) {
-        iziToast.error({
-          title: "Ha ocurrido un error",
-          message: data.message
-        })
+        if (data) {
+          iziToast.error({
+            title: "Ha ocurrido un error",
+            message: data.message
+          })
+
+        }
       }
     })
 
@@ -292,7 +296,7 @@ function darkenOtherRows(row, deactivate) {
 
 // Función para enviar los datos de una fila modificada al servidor
 async function sendRowData(row) {
-
+  console.log("Enviando informacion")
   let cid = document.getElementById("cid").textContent;
   let quantity = parseInt(row.cells[4].querySelector("input").value);
   let pid = row.cells[6].innerText

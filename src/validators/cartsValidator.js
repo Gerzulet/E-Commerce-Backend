@@ -37,9 +37,11 @@ class cartsValidator {
   async updateCart(cid, product, user) {
     //VERIFICANDO EXISTENCIA DE PRODUCTO EN BASE DE DATOS
     let enExistencia = await ProductService.getProductById(product.product)
-    logger.debug(`Comprobando que el producto exista en la base de datos ${enExistencia}`)
-    logger.debug(`El owner del producto es ${enExistencia.owner}`)
-    logger.debug(`El rol del usuario que intenta agregar el producto es : ${user.role}`)
+    logger.debug(`VAL:Comprobando que el producto exista en la base de datos ${enExistencia}`)
+    logger.debug(`VAL:El owner del producto es ${enExistencia.owner}`)
+    logger.debug(`VAL:El rol del usuario que intenta agregar el producto es : ${user.role}`)
+
+
 
 
 
@@ -47,13 +49,41 @@ class cartsValidator {
     if (!cid) throw new Error("Missing CID")
     if (!enExistencia) throw new Error("Product not found in DB")
     if (user.role === 'premium' && enExistencia.owner === user.user) {
-      logger.debug(`Hemos entrado en la condicion necesaria`)
       throw new Error("A premium user cannot add to cart its own products")
     }
 
     try {
 
-      await cartsServices.updateCart(cid, product)
+      let cart = await this.getCartById(cid)
+
+      // Verificamos si ya sta en el carrito
+      let foundInCart = (cart.products.find(el => (el.product._id).toString() === product.product))
+      let stock = foundInCart.product.stock
+      let productIndex = (cart.products.findIndex(el => (el.product._id).toString() === product.product))
+
+
+      // let totalQuantity = foundInCart[productIndex].quantity + product.quantity
+      // console.log("Actualizaremos el carrito con ")
+      // console.log(`ID: ${foundInCart.products[productIndex]._id}`)
+      // console.log(`Cantidad: ${totalQuantity}`)
+      // console.log(`La cantidad que no debemos superar es ${cart[productIndex].product.stock}`)
+
+      // Si esta en el carrito, ubicamos su id en el carrito
+      if (foundInCart != null) {
+        logger.warning("VAL:Se esta intentando agregar mas productos de los que hay")
+        let productStock = cart.products[productIndex].product.stock
+        // Ubicamos la cantidad solicitada en el carrito, y la sumamos con la cantidad que tenemos aca
+        let totalAmount = product.quantity + cart.products[productIndex].quantity
+        let pidInCart = cart.products[productIndex]._id.toString()
+        // La cantida total no puede superar la cantidad de stock que tenemos en el producto, si la supera, va a ser directamente el total
+        if (totalAmount > productStock) totalAmount = productStock
+        // Una vez ubicamos su id, llamamos a la funcion para actualizar la cantidad
+        await cartsServices.updateQuantityToCart(cid, pidInCart, totalAmount)
+      } else {
+        await cartsServices.updateCart(cid, product)
+
+      }
+
     } catch (error) {
       return error;
     }

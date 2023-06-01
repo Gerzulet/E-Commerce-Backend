@@ -25,11 +25,12 @@ Tareas a realizar paralelamente.
 
 
   - [ ] Carts
+   - [ ] Si agrego un producto, si se encuentra en el carrito debe sumarse
    - [X] Manejar respuestas con alertify o similar
    - [X] Estilar detalles de carritos
    - [X] Manejar casos en que intentamos solicitar mas productos de los que hay en stock
    - [X] Poder modificar cantidad de la tabla
-   - [ ] Agregar funcionalidad para borrar producto de carrito  desde cliente
+   - [X] Agregar funcionalidad para borrar producto de carrito  desde cliente
 
 
   - [X] Users
