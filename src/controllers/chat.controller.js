@@ -5,7 +5,6 @@ class chatController {
 
   async getMessages(req, res) {
     const result = await chatValidator.getMessages({})
-    req.logger.debug(result)
 
     return result
 

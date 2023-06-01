@@ -171,4 +171,45 @@ i{
   }
 }
 
+/* Boton flotador para chat */
 
+#botonflotador{
+position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+}
+
+#botonflotador {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  transition: transform 2s ease-in-out;
+}
+
+#botonflotador:hover {
+  transform: translateY(-5px);
+  /* Puedes ajustar el valor de translateY para cambiar la distancia de desplazamiento */
+  /* Por ejemplo, translateY(-10px) moverá el botón hacia arriba en 10 píxeles */
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-15px);
+    /* Puedes ajustar el valor de translateY para cambiar la altura máxima de flotación */
+    /* Por ejemplo, translateY(-20px) hará que el botón flote más alto */
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+#botonflotador {
+  animation: float 3s ease-in-out infinite;
+  /* Puedes ajustar el valor de animation-duration para cambiar la velocidad de la animación */
+  /* Por ejemplo, animation: float 5s ease-in-out infinite hará que la animación dure 5 segundos */
+}

@@ -9,9 +9,8 @@ import authorization from "../utils/autorization.js";
 
 const router = Router()
 
-router.get('/', passportCall('jwt'), authorization(['user']), passport.authenticate('jwt', { session: false }), (req, res) => {
-
-
+router.get('/', passportCall('jwt'), authorization(['user', 'admin', 'premium']), passport.authenticate('jwt', { session: false }), (req, res) => {
+  console.log(req.user.role)
   io.on('connection', async (socket) => {
 
     console.log("Socket connected")

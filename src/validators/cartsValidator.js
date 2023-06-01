@@ -70,7 +70,7 @@ class cartsValidator {
 
       // Si esta en el carrito, ubicamos su id en el carrito
       if (foundInCart != null) {
-        logger.warning("VAL:Se esta intentando agregar mas productos de los que hay")
+        logger.warning("VAL: 🧐 Se esta intentando agregar mas productos de los que hay")
         let productStock = cart.products[productIndex].product.stock
         // Ubicamos la cantidad solicitada en el carrito, y la sumamos con la cantidad que tenemos aca
         let totalAmount = product.quantity + cart.products[productIndex].quantity

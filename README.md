@@ -24,8 +24,8 @@ Tareas a realizar paralelamente.
    - [X] Habilitar render para modificacion de productos
 
 
-  - [ ] Carts
-   - [ ] Si agrego un producto, si se encuentra en el carrito debe sumarse
+  - [X] Carts
+   - [X] Si agrego un producto, si se encuentra en el carrito debe sumarse
    - [X] Manejar respuestas con alertify o similar
    - [X] Estilar detalles de carritos
    - [X] Manejar casos en que intentamos solicitar mas productos de los que hay en stock
@@ -43,15 +43,16 @@ Tareas a realizar paralelamente.
    - [X] Redireccionar a HOME tras hacer login exitoso
    - [X] Manejar respuesta en caso de usuario incorrecto
 
+  - [X] Chat
+   - [X] Manejar permisos 
 
   - [X] Restore
    - [X] Estilar
    - [X] Manejar respuestas ante informacion incorrecta
 
-  - [ ] Register
+  - [X] Register
    - [X] Verificar creacion de usuario
        - [X] Manejar respuesta desde el front
-       - [ ] Añadir mail para creacion de usuario
 
 - [X] Habilitar respuestas de servidor en json
 - [ ] Refinar manejo de logs 
