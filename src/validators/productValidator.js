@@ -5,6 +5,20 @@ import EErrors from "../utils/EErrors.js";
 import generateProductErrorInfo from "../utils/generateProductErrorInfo.js";
 import mockingProductsGenerator from '../utils/mockingProductsGenerator.js'
 import { logger } from '../utils/logger.js'
+import config from "../config/config.js";
+import nodemailer from 'nodemailer'
+
+
+const transport = nodemailer.createTransport({
+  service: 'gmail',
+  port: 3000,
+  auth: {
+    user: config.mail_account,
+    pass: config.mail_pass
+  }
+})
+
+
 class productValidator {
 
   async getProducts(limit, query, sort, page) {
@@ -69,7 +83,7 @@ class productValidator {
   }
 
 
-  async deleteProduct(pid, role) {
+  async deleteProduct(pid, user, role) {
     try {
       if (!pid) throw new Error("Missing PID")
       if (!role) throw new Error("Missing Role")
@@ -86,6 +100,47 @@ class productValidator {
       if (product.owner === 'admin' && role === 'premium') {
         logger.error("intentando eliminar producto sin permisos")
         throw new Error("Error eliminando producto por permisos")
+      }
+
+      if ((product.owner === user) && role === 'premium') {
+        await transport.sendMail({
+          from: 'German <german.alejandrozulet@gmail.com>',
+          to: user,
+          subject: 'Su producto ha sido eliminado',
+          html: `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Su producto ha sido eliminado</title>
+</head>
+<body>
+  <div>
+    <h1>Producto Eliminado</h1>
+    <p>Estimado/a Usuario/a,</p>
+    <p>Ha seleccioando el producto, para eliminar de las siguientes caracteristicas:</p>
+
+<ul>
+  <li>Nombre:${product.title}</li>
+  <li>Descripcion: ${product.description}</li>
+  <li>Categoria: ${product.category}</li>
+  <li>Precio: $ ${product.price}</li>
+</ul>
+
+
+    <p>Si tienes alguna pregunta o necesitas ayuda, por favor contáctanos.</p>
+    <p>Gracias,</p>
+    <p>El equipo del alumno de CODERHOUSE</p>
+  </div>
+</body>
+</html>
+ 
+      `, attachments: []
+
+        })
+
+
+
       }
 
 

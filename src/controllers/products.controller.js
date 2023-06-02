@@ -103,9 +103,10 @@ class productController {
   async deleteProduct(req, res) {
     let pid = (req.params.pid)
     const role = req.user.role
+    const user = req.user.user
     const products = await productValidator.getProducts()
     try {
-      await productValidator.deleteProduct(pid, role)
+      await productValidator.deleteProduct(pid, user, role)
       res.status(200).render('products', { products, message: "Producto Eliminado" })
     } catch (error) {
       console.log(error.message)
