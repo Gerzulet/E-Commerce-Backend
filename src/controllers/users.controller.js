@@ -132,6 +132,30 @@ class usersController {
 
   }
 
+  async deleteUser(req, res) {
+
+    const userId = req.params.uid
+    req.logger.debug(`CON: ID de usuario a eliminar: ${userId}`)
+
+
+    try {
+      await usersValidator.deleteUser(userId)
+      res.status(200).json({ message: "Usuario eliminado" })
+    } catch (Error) {
+      req.logger.error(Error.message)
+      res.status(403).json({ error: Error })
+
+    }
+
+
+
+
+
+
+
+
+  }
+
 }
 
 

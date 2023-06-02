@@ -13,8 +13,14 @@ img:hover, button:hover{
   transform:scale(1.1)
 }
 
-#deleteInactiveUsers {
+#deleteInactiveUsers, #deleteButton{
   background-color: red !important;
+}
+
+
+
+#deleteInactiveUsers{
+  margin-top: 2rem;
 }
 
 

@@ -15,6 +15,7 @@ router.get('/premium', passportCall('jwt'), authorization(['admin']), passport.a
 router.put('/premium/:uid', passportCall('jwt'), authorization(['admin']), passport.authenticate('jwt', { session: false }), roleValidation(), usersController.changeRole) // ✅
 router.post('/:uid/documents', passportCall('jwt'), authorization(['user']), passport.authenticate('jwt', { session: false }), uploader.fields([{ name: 'profilePic', maxCount: 1 }, { name: 'productImage', maxCount: 5 }, { name: 'identification', maxCount: 1 }, { name: 'location', maxCount: 1 }, { name: 'accountStatus', maxCount: 1 }]), usersController.uploadDocs) // ✅
 router.delete('/', passportCall('jwt'), authorization(['admin']), passport.authenticate('jwt', { session: false }), usersController.deleteInactiveUsers) // ✅
+router.delete('/:uid', passportCall('jwt'), authorization(['admin']), passport.authenticate('jwt', { session: false }), usersController.deleteUser) // ✅
 
 
 

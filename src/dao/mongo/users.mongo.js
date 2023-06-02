@@ -61,8 +61,18 @@ class UserDao {
   }
 
   async deleteUser(id) {
-    return await userModel.deleteOne({ _id: id });
+    return await userModel.deleteOne(
+      {
+        _id: id
+      })
+      .then(result => console.log(result))
+      .catch(error => {
+        throw new Error(error)
+      })
   }
+
+
+
   async findInactiveUsers() {
     console.log("MONGO: Buscando usuarios inactivos")
     let requiredTime = new Date();

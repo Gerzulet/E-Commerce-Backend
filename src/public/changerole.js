@@ -1,4 +1,38 @@
 
+const deleteButtons = document.querySelectorAll('#deleteButton');
+
+deleteButtons.forEach(button => {
+
+  button.addEventListener('click', async (event) => {
+    event.preventDefault()
+
+    let uid = event.target.dataset.id;
+
+    await fetch(`/api/users/${uid}`, {// 
+      method: 'DELETE',
+    })
+      .then(response => {
+        if (response.ok) {
+          iziToast.success({
+            title: "Usuario eliminado",
+          })
+          setTimeout(() => {
+            window.location.href = "/api/users/premium"
+          }, 400);
+        } else {
+          iziToast.error({
+            title: "No se ha podido eliminar al usuario",
+          })
+        }
+      })
+      .catch(error => {
+        console.log(error)
+      })
+
+  })
+})
+
+
 const sendButtons = document.querySelectorAll('#sendButton');
 
 sendButtons.forEach(button => {

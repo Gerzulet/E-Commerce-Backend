@@ -22,6 +22,30 @@ class usersValidator {
   }
 
 
+  async deleteUser(uid) {
+    console.log(`VAL: Eliminando usuario con id ${uid}`)
+
+
+    const usuariosExcluidos = ['640dfe483d9a85c2cbdc44d6', '6429686e7ea1c5f5b46d804b', '644709cf130471ec9f3a268c']; // Usuarios son admin, premium y user
+
+
+    if (!uid) throw new Error("MISSING UID")
+    if (usuariosExcluidos.includes(uid)) {
+      throw new Error("No se puede eliminar este usuario.");
+    }
+
+
+    try {
+      await UserService.deleteUser(uid)
+    } catch (error) {
+      throw new Error(error)
+
+    }
+
+
+
+  }
+
   async deleteInactiveUsers() {
     console.log("VAL: Eliminando usuarios inactivos")
 
