@@ -15,7 +15,10 @@ const userSchema = new Schema({
     reference: String
   }],
   tokenDate: Date,
-  last_connection: Date
+  last_connection: {
+    type: Date,
+    default: Date.now
+  }
 })
 
 export const userModel = model(userCollection, userSchema)

@@ -22,6 +22,24 @@ class usersValidator {
   }
 
 
+  async deleteInactiveUsers() {
+    console.log("VAL: Eliminando usuarios inactivos")
+
+    try {
+      await UserService.deleteInactiveUsers()
+    } catch (error) {
+      throw new Error(`${error}`)
+    }
+  }
+
+  async findInactiveUsers() {
+    try {
+      return await UserService.findInactiveUsers()
+    } catch (error) {
+      throw new Error(error)
+    }
+  }
+
 
 
   async updateUserDocuments(uid, data) {

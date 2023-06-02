@@ -40,3 +40,30 @@ sendButtons.forEach(button => {
   })
 })
 
+
+document.getElementById("deleteInactiveUsers").addEventListener('click', async () => {
+  console.log("Eliminando usuarios inactivos")
+  await fetch(`/api/users`, {// 
+    method: 'DELETE',
+  })
+    .then(response => {
+      if (response.ok) {
+        iziToast.success({
+          title: "Usuarios eliminados",
+        })
+        setTimeout(() => {
+          window.location.href = "/api/users/premium"
+
+        }, 1000);
+      } else {
+        iziToast.error({
+          title: "Ha ocurrido un error",
+        })
+      }
+    })
+    .catch(error => {
+      console.log(error)
+    })
+
+
+})

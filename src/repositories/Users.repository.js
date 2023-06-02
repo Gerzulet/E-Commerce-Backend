@@ -25,10 +25,17 @@ export default class UserRepository {
   async deleteUser(id) {
     return await this.dao.deleteUser(id)
   }
+  async deleteInactiveUsers() {
+    return await this.dao.deleteInactiveUsers()
+  }
 
   async getUserByToken(token) {
     return await this.dao.getUserByToken(token)
   }
+  async findInactiveUsers() {
+    return await this.dao.findInactiveUsers()
+  }
+
 
 
 }

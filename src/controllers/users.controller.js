@@ -1,5 +1,28 @@
 import usersValidators from '../validators/users.validators.js'
 import usersValidator from '../validators/users.validators.js'
+import config from "../config/config.js";
+import nodemailer from 'nodemailer'
+
+//       await transport.sendMail({
+//         from: 'German <german.alejandrozulet@gmail.com>',
+//         to: req.user.user,
+//         subject: 'Carrito nuevo creado',
+//         html: `
+//          <div>
+//           <h1> Hey! Has creado un carrito exitosamente! </h1>
+//         </div> 
+// `, attachments: []
+
+//       })
+const transport = nodemailer.createTransport({
+  service: 'gmail',
+  port: 3000,
+  auth: {
+    user: config.mail_account,
+    pass: config.mail_pass
+  }
+})
+
 
 class usersController {
 
@@ -55,6 +78,58 @@ class usersController {
       res.json({ error: error.message })
 
     }
+  }
+
+  async deleteInactiveUsers(req, res) {
+
+    req.logger.debug("CON: Eliminando usuarios inactivos")
+    try {
+
+      const usuariosAEliminar = await usersValidator.findInactiveUsers()
+      const mails = usuariosAEliminar.map(el => el.email)
+
+      await usersValidator.deleteInactiveUsers()
+
+      await transport.sendMail({
+        from: 'German <german.alejandrozulet@gmail.com>',
+        to: mails,
+        subject: 'Su cuenta ha sido eliminada',
+        html: `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Cuenta eliminada por inactividad</title>
+</head>
+<body>
+  <div>
+    <h1>Cuenta eliminada por inactividad</h1>
+    <p>Estimado/a Usuario/a,</p>
+    <p>Tu cuenta ha sido eliminada debido a la inactividad prolongada. Lamentamos informarte que ya no podrás acceder a nuestros servicios.</p>
+    <p>Si tienes alguna pregunta o necesitas ayuda, por favor contáctanos.</p>
+    <p>Gracias,</p>
+    <p>El equipo del alumno de CODERHOUSE</p>
+  </div>
+</body>
+</html>
+ 
+      `, attachments: []
+
+      })
+
+
+
+      res.status(200).json({ message: "Usuarios eliminados" })
+    } catch (error) {
+      req.logger.error(`Error eliminando usuarios ${error.message}`)
+      res.status(500).json({ message: error.message })
+
+    }
+
+
+
+
+
   }
 
 }

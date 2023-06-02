@@ -13,7 +13,9 @@ img:hover, button:hover{
   transform:scale(1.1)
 }
 
-
+#deleteInactiveUsers {
+  background-color: red !important;
+}
 
 
 .title {

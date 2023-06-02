@@ -63,6 +63,50 @@ class UserDao {
   async deleteUser(id) {
     return await userModel.deleteOne({ _id: id });
   }
+  async findInactiveUsers() {
+    console.log("MONGO: Buscando usuarios inactivos")
+    let requiredTime = new Date();
+    requiredTime.setDate(requiredTime.getDate() - 2);
+
+    const usuariosExcluidos = ['640dfe483d9a85c2cbdc44d6', '6429686e7ea1c5f5b46d804b', '644709cf130471ec9f3a268c']; // Usuarios son admin, premium y user
+
+    const usuariosInactivos = await userModel.find(
+      {
+        $and: [
+          { last_connection: { $lt: requiredTime } }, // Condición para encontrar usuarios con última conexión anterior a dos días atrás
+          { _id: { $nin: usuariosExcluidos } } // Condición para excluir ciertos usuarios por sus IDs
+        ]
+      }, 'email -_id'
+    );
+
+    return usuariosInactivos;
+  }
+
+
+  async deleteInactiveUsers() {
+    console.log("MONGO: Eliminando usuarios")
+    let requiredTime = new Date()
+    requiredTime.setDate(requiredTime.getDate() - 2)
+
+    const usuariosExcluidos = ['640dfe483d9a85c2cbdc44d6', '6429686e7ea1c5f5b46d804b', '644709cf130471ec9f3a268c'] // Usuarios son admin, premium y user
+    userModel.deleteMany(
+      {
+        $and: [
+          { last_connection: { $lt: requiredTime } }, // Condición para encontrar usuarios con última conexión anterior a dos días atrás
+          { _id: { $nin: usuariosExcluidos } } // Condición para excluir ciertos usuarios por sus IDs
+        ]
+      }
+    )
+      .then(result => {
+        // Manejar el resultado si es necesario
+        console.log(result)
+      })
+      .catch(error => {
+        // Manejar el error si ocurre
+        console.log(error)
+      });
+
+  }
 
   async getUserByToken(token) {
     try {
