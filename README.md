@@ -60,8 +60,8 @@ Tareas a reaizar paralelamente.
 - [X] Manejar cambios en renderizados a traves del cliente y no desde el servidor
 - [ ] Refinar testing
    - [ ] Agregar nuevas rutas jsons para pruebas integrales
-- [ ] Documentar 
-   - [ ] Agregar nueva ruta de jsons
+- [X] Documentar 
+   - [X] Agregar nueva ruta de jsons
 - [ ] Pasar a .env variables e informacion sensible (cookies secrets, etc..)
 
 Desde el router de /api/users, crear tres rutas:

@@ -1,3 +1,4 @@
+
 let uid = document.getElementById("UID").textContent
 let route = `/api/users/${uid}/documents`
 
@@ -31,9 +32,16 @@ async function uploadFile(formInfo, inputInfo, event) {
 
   })
     .then(() => {
+      iziToast.success({
+        title: "Documento cargado"
+      })
       console.log("Peticion realizada")
     })
     .catch(error => {
+      iziToast.error({
+        title: "Ha ocurrido un error",
+        message: error.message
+      })
       console.log(error)
     })
 
@@ -41,23 +49,23 @@ async function uploadFile(formInfo, inputInfo, event) {
 }
 
 
-document.getElementById("profilePicForm").addEventListener('submit', async (event) => {
+document.getElementById("profilePicForm").addEventListener('change', async (event) => {
   event.preventDefault()
   uploadFile("profilePicForm")
 })
-document.getElementById("productImageForm").addEventListener('submit', async (event) => {
+document.getElementById("productImageForm").addEventListener('change', async (event) => {
   event.preventDefault()
   uploadFile("productImageForm")
 })
-document.getElementById("idForm").addEventListener('submit', async (event) => {
+document.getElementById("idForm").addEventListener('change', async (event) => {
   event.preventDefault()
   uploadFile("idForm")
 })
-document.getElementById("locationForm").addEventListener('submit', async (event) => {
+document.getElementById("locationForm").addEventListener('change', async (event) => {
   event.preventDefault()
   uploadFile("locationForm")
 })
-document.getElementById("statusForm").addEventListener('submit', async (event) => {
+document.getElementById("statusForm").addEventListener('change', async (event) => {
   event.preventDefault()
   uploadFile("statusForm")
 })
@@ -68,7 +76,7 @@ document.getElementById("statusForm").addEventListener('submit', async (event) =
 
 
 
-// document.getElementById("productImageForm").addEventListener('submit', async (event) => {
+// document.getElementById("productImageForm").addEventListener('change', async (event) => {
 //   event.preventDefault()
 
 
@@ -94,7 +102,7 @@ document.getElementById("statusForm").addEventListener('submit', async (event) =
 
 
 
-// document.getElementById("documentForm").addEventListener('submit', async (event) => {
+// document.getElementById("documentForm").addEventListener('change', async (event) => {
 //   event.preventDefault()
 
 

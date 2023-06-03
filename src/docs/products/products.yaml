@@ -174,8 +174,8 @@ paths:
 
 components:
   schemas:
+    type: object
     products:
-      type: object
       properties:
         _id:
           type: ObjectId

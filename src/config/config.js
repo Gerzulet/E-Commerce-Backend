@@ -25,6 +25,7 @@ export default {
   mail_account: process.env.MAIL_ACCOUNT,
   mail_pass: process.env.MAIL_PASS,
   log_level: process.env.LOG_LEVEL,
+  cookiekey: process.env.COOKIEKEY,
 }
 
 

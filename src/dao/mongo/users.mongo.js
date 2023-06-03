@@ -23,7 +23,7 @@ class UserDao {
 
     if (data.name) { // Si estamos actualizando el rol del usuario
       console.log("Actualizando rol de usuario")
-      await userModel.findOneAndUpdate(
+      await userModel.findOneAndUpdate( // Manejando actualizacion  de documentos
         { _id: id },
         { $pull: { documents: { name: data.name } } },
         { new: true },
@@ -55,7 +55,21 @@ class UserDao {
         }
       );
     } else {
-      await userModel.updateOne({ _id: id }, { $set: data });
+      const adminUID = '6429686e7ea1c5f5b46d804b'
+      await userModel.updateOne({
+
+        $and: [
+          {
+            _id: id
+          },
+          {
+            _id: { $nin: adminUID }
+          }
+        ]
+
+
+      },
+        { $set: data });
     }
 
   }

@@ -32,8 +32,16 @@
           <span class="invisible">Documentation</span>
         </a>
       </li>
+            <li>
+        <a href="/api/users/documents">
+          <img src="../images/resume.png" alt="User Documents">
+          <span class="invisible">Profile</span>
+        </a>
+      </li>
 
       {{/if}}
+
+
       <li>
         <a href="/api/session/login">
           <img src="../images/login.png" alt="login">
@@ -51,13 +59,6 @@
 
 
             {{#if isAdmin}}
-            <li>
-        <a href="/api/users/documents">
-          <img src="../images/resume.png" alt="User Documents">
-          <span class="invisible">Profile</span>
-        </a>
-      </li>
-
       <li>
         <a href="/api/users/premium">
           <img src="../images/users.png" alt="users">
@@ -65,6 +66,8 @@
         </a>
       </li>
       {{/if}}
+
+
       {{/if}}
     </ul>
   </nav>

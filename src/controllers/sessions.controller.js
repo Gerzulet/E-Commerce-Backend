@@ -104,7 +104,7 @@ class sessionsController {
 
       if (checkedAccount) {
         await sessionServices.updateUser(checkedAccount._id, { last_connection: new Date() })
-        const token = jwt.sign({ user: userToSign.email, role: userToSign.role, phone: userToSign.phone, userID: checkedAccount._id, userName: checkedAccount.username }, 'coderSecret');
+        const token = jwt.sign({ user: userToSign.email, role: userToSign.role, phone: userToSign.phone, userID: checkedAccount._id, userName: checkedAccount.username }, config.cookiekey);
         res.cookie('coderCokieToken', token, { maxAge: 60 * 60 * 60 * 60, httpOnly: false, withCredentials: false });
         req.logger.info("User is logged in ")
         res.redirect('/api')

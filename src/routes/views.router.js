@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import jwt from 'jsonwebtoken'
-
+import config from "../config/config.js";
 const router = Router()
 
 
@@ -11,7 +11,7 @@ router.get('/', (req, res) => {
   let verification = req.cookies.coderCokieToken ? true : false // Verificacion de que hemos ingresado 
   let usuario;
   if (req.cookies.coderCokieToken) {
-    usuario = jwt.verify(req.cookies.coderCokieToken, 'coderSecret')
+    usuario = jwt.verify(req.cookies.coderCokieToken, config.cookiekey)
 
   } else {
     usuario = {
