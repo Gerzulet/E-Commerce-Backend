@@ -1,7 +1,7 @@
 import twilio from 'twilio'
 import config from "../config/config.js";
 import { logger } from '../utils/logger.js'
-import { CartsService as cartsServices, ProductService, UserService } from "../repositories/index.js";
+import { CartsService as cartsServices, ProductService } from "../repositories/index.js";
 
 
 
@@ -62,11 +62,6 @@ class cartsValidator {
       let productIndex = (cart.products.findIndex(el => (el.product._id).toString() === product.product))
 
 
-      // let totalQuantity = foundInCart[productIndex].quantity + product.quantity
-      // console.log("Actualizaremos el carrito con ")
-      // console.log(`ID: ${foundInCart.products[productIndex]._id}`)
-      // console.log(`Cantidad: ${totalQuantity}`)
-      // console.log(`La cantidad que no debemos superar es ${cart[productIndex].product.stock}`)
 
       // Si esta en el carrito, ubicamos su id en el carrito
       if (foundInCart != null) {

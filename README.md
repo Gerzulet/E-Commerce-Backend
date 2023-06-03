@@ -4,7 +4,7 @@
 E-Commerce, realizado en el lado del backend, en base a la entrega final de CODERHOUSE. 
 
 
-Tareas a realizar paralelamente. 
+Tareas a reaizar paralelamente. 
 
 - [ ] Trabajar en estilos de renders
 
@@ -56,7 +56,8 @@ Tareas a realizar paralelamente.
 
 - [X] Habilitar respuestas de servidor en json
 - [ ] Refinar manejo de logs 
-- [ ] Manejar cambios en renderizados a traves del cliente y no desde el servidor
+   - [X] Manejar errores
+- [X] Manejar cambios en renderizados a traves del cliente y no desde el servidor
 - [ ] Refinar testing
    - [ ] Agregar nuevas rutas jsons para pruebas integrales
 - [ ] Documentar 
@@ -75,8 +76,10 @@ Desde el router de /api/users, crear tres rutas:
 
 
 
-- [ ] Modificar el endpoint que elimina productos, para que, en caso de que el producto pertenezca a un usuario premium, le envíe un correo indicándole que el producto fue eliminado.
+- [X] Modificar el endpoint que elimina productos, para que, en caso de que el producto pertenezca a un usuario premium, le envíe un correo indicándole que el producto fue eliminado.
 Verificar en este caso modulo de delete producto, el usuario premium no puede eliminar producto de otros
+
+
 - [X] Finalizar las vistas pendientes para la realización de flujo completo de compra. NO ES NECESARIO tener una estructura específica de vistas, sólo las que tú consideres necesarias para poder llevar a cabo el proceso de compra.
 
 No es necesario desarrollar vistas para módulos que no influyan en el proceso de compra (Como vistas de usuarios premium para crear productos, o vistas de panel de admin para updates de productos, etc)

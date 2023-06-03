@@ -9,7 +9,7 @@ program
 
 program.parse()
 
-console.log(program.opts().mode)
+console.log("Programa funcionando en modo" + " " + program.opts().mode)
 
 dotenv.config({
   path: program.opts().mode === 'development' ? './.env.development' : './.env.production'

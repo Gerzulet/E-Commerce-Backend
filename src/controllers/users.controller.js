@@ -1,19 +1,7 @@
-import usersValidators from '../validators/users.validators.js'
 import usersValidator from '../validators/users.validators.js'
 import config from "../config/config.js";
 import nodemailer from 'nodemailer'
 
-//       await transport.sendMail({
-//         from: 'German <german.alejandrozulet@gmail.com>',
-//         to: req.user.user,
-//         subject: 'Carrito nuevo creado',
-//         html: `
-//          <div>
-//           <h1> Hey! Has creado un carrito exitosamente! </h1>
-//         </div> 
-// `, attachments: []
-
-//       })
 const transport = nodemailer.createTransport({
   service: 'gmail',
   port: 3000,
@@ -30,14 +18,26 @@ class usersController {
   async getDocumentsPage(req, res) {
     req.logger.info("Documents page")
     let user = req.user
-    res.render('documents', { title: "Users", username: user.user, user: user.userID, style: `<link  href="/styles/documents.css" rel="stylesheet">` })
+    try {
+      res.render('documents', { title: "Users", username: user.user, user: user.userID, style: `<link  href="/styles/documents.css" rel="stylesheet">` })
+    } catch (error) {
+      req.logger.error(`Funcion getDocumentsPage en controlador: ${error.message}`)
+      res.status(500).json({ message: `Error ${error}` })
+
+    }
   }
 
   async changeRolePage(req, res) {
     let json = req.query.json
     const users = await usersValidator.getUsers()
-    if (json) res.status(200).json(users)
-    else res.render('changerole', { users, style: `<link href="/styles/users.css" rel="stylesheet">` })
+    try {
+      if (json) res.status(200).json(users)
+      else res.render('changerole', { users, style: `<link href="/styles/users.css" rel="stylesheet">` })
+    } catch (error) {
+      req.logger.error(`Funcion changeRolePage en controlador: ${error.message}`)
+      res.status(500).json({ error: `Error: ${error.message}` })
+
+    }
 
   }
 
@@ -50,7 +50,7 @@ class usersController {
       await usersValidator.changeRole(role, uid)
       res.render('changerole', { users })
     } catch (error) {
-      console.log(error.message)
+      req.logger.error(`Funcion changeRole en controlador: ${error.message}`)
       res.status(400).json({ message: "An error as occurred" })
 
 
@@ -75,6 +75,8 @@ class usersController {
       const response = await usersValidator.updateUserDocuments(uid, data)
       res.render('documents', { message: "Perfil actualizado" })
     } catch (error) {
+      req.logger.error(`Funcion uploadDocs en controlador: ${error.message}`)
+
       res.json({ error: error.message })
 
     }
@@ -121,7 +123,8 @@ class usersController {
 
       res.status(200).json({ message: "Usuarios eliminados" })
     } catch (error) {
-      req.logger.error(`Error eliminando usuarios ${error.message}`)
+      req.logger.error(`Funcion deleteInactiveUsers en controlador: ${error.message}`)
+
       res.status(500).json({ message: error.message })
 
     }
@@ -142,7 +145,8 @@ class usersController {
       await usersValidator.deleteUser(userId)
       res.status(200).json({ message: "Usuario eliminado" })
     } catch (Error) {
-      req.logger.error(Error.message)
+      req.logger.error(`Funcion deleteUser en controlador: ${Error.message}`)
+
       res.status(403).json({ error: Error })
 
     }

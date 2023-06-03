@@ -8,7 +8,6 @@ import sessionsController from "../controllers/sessions.controller.js";
 const router = Router();
 
 
-router.get('/failedregister', sessionsController.getFailedRegisterPage)
 router.get('/login', sessionsController.getLoginPage) // ✅ VER BOTON DE REGISTRARSAE
 router.get('/current', passportCall('jwt'), passport.authenticate('jwt', { session: false }), sessionsController.getCurrentProfile)
 router.get('/register', sessionsController.getRegisterPage) // ✅

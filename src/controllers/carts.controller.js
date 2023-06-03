@@ -27,6 +27,7 @@ class cartController {
       if (json) res.status(200).json(result)
       else res.render('carts', { result, styleRoute: `<link href="/styles/carts.css" rel="stylesheet">` })
     } catch (error) {
+      req.logger.error(`Funcion getCarts en controlador: ${error.message}`)
       res.json(error)
     }
   }
@@ -41,6 +42,7 @@ class cartController {
       if (json) res.status(200).json(result)
       else res.render('cartById', { result, title: "Search Cart", styleRoute: `<link href="/styles/cartbyid.css" rel="stylesheet">` })
     } catch (error) {
+      req.logger.error(`Funcion getCartById en controlador: ${error.message}`)
       res.status(404).json(error.message)
     }
   }
@@ -62,7 +64,7 @@ class cartController {
       req.logger.info("Mail has been sent")
       res.status(201).json({ info: 'Cart Created' })
     } catch (error) {
-      req.logger.error("Something has happened", error)
+      req.logger.error(`Funcion createCart en controlador: ${error.message}`)
       res.status(400).json({ info: `Something has happened: ${error}` })
     }
 
@@ -73,7 +75,7 @@ class cartController {
     const cid = (req.params.cid)
     const { quantity, pid } = req.body;
     const product = { product: pid, quantity: quantity }
-
+    // Variable booleana para evitar que se intente enviar dos headers en una misma respuesta, si enmbargo, es un problema exclusivo de este funcion, no rompe el programa pero es algo para revisar
     let responseSent = false
     try {
       const user = req.user
@@ -83,8 +85,7 @@ class cartController {
       responseSent = true
     } catch (error) {
       if (responseSent = false) {
-
-        console.log(error.message)
+        req.logger.error(`Funcion updateCart en controlador: ${error.message}`)
         res.status(400).json({ error: error.message })
         responseSent = true
 
@@ -97,14 +98,12 @@ class cartController {
     const { cid, pid } = req.params;
     const { quantity } = req.body;
     try {
-      console.log(`La cantidad es ${quantity}`)
-      console.table([cid, pid])
       await cartValidator.updateQuantityToCart(cid, pid, quantity)
       req.logger.info("Quantity of product has been updated")
       res.json({ message: "Quantity Updated", payload: await cartValidator.getCartById(cid) })
     } catch (error) {
       console.log(error)
-      req.logger.error("No se ha actualizado el producto en el carrito")
+      req.logger.error(`Funcion updateQuantityFromCart en controlador: ${error.message}`)
       res.json({ error: error })
 
     }
@@ -120,6 +119,8 @@ class cartController {
       req.logger.info("Product has been deleted from cart")
       res.json({ message: `PID: ${pid} has been deleted from cart ${cid}`, payload: await cartValidator.getCartById(cid) })
     } catch (error) {
+      req.logger.error(`Funcion deleteProductFromCart en controlador: ${error.message}`)
+
       res.json({ error: error.message })
     }
   }
@@ -133,6 +134,8 @@ class cartController {
       req.logger.info("Cart has been emptied")
       res.json({ status: 200, message: 'Cart Eliminated' })
     } catch (error) {
+      req.logger.error(`Funcion emptyCart en controlador: ${error.message}`)
+
       res.json({ error })
     }
   }
@@ -150,7 +153,10 @@ class cartController {
       req.logger.info("cart has been purchased")
       res.json({ message: "Se ha generado el siguiente ticket:", result })
     } catch (Error) {
+      req.logger.error(`Funcion purchase en controlador: ${Error.message}`)
+
       res.json({ error: Error.message })
+
 
     }
 

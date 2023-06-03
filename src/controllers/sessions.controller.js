@@ -20,23 +20,53 @@ const transport = nodemailer.createTransport({
 class sessionsController {
 
   async getLoginPage(req, res) {
-    res.render('login', { styleRoute: `<link href="/styles/login.css" rel="stylesheet">` })
+    try {
+      res.render('login', { styleRoute: `<link href="/styles/login.css" rel="stylesheet">` })
+
+    } catch (error) {
+      req.logger.error(`Funcion getLoginPage en controlador: ${error.message}`)
+      res.status(500).json({ error: error.message })
+
+    }
   }
 
   async getCurrentProfile(req, res) {
-    res.render('current', { user: req.user })
+    try {
+      res.render('current', { user: req.user })
+
+    } catch (error) {
+      req.logger.error(`Funcion getCurrentProfile en controlador: ${error.message}`)
+      res.status(500).json({ error: error.message })
+
+
+    }
   }
 
   async getRegisterPage(req, res) {
-    res.render('register', { styleRoute: `<link href="/styles/register.css" rel="stylesheet">` })
+    try {
+      res.render('register', { styleRoute: `<link href="/styles/register.css" rel="stylesheet">` })
+
+    } catch (error) {
+      req.logger.error(`Funcion getRegisterPage en controlador: ${error.message}`)
+      res.status(500).json({ error: error.message })
+
+    }
   }
 
   async postToRegister(req, res) {
-    console.log("Intentando registrar")
-    if (req.user.message === "Usuario ya existe") {
-      res.status(409).json({ message: "Usuaro ya existe" })
-    } else {
-      res.status(201).json({ message: "Usuario creado exitosamente" })
+    req.logger.debug("Registrando usuario")
+    try {
+      if (req.user.message === "Usuario ya existe") {
+        res.status(409).json({ message: "Usuaro ya existe" })
+      } else {
+        res.status(201).json({ message: "Usuario creado exitosamente" })
+
+      }
+
+    } catch (error) {
+      req.logger.error(`Funcion postToRegister en controlador: ${error.message}`)
+      res.status(500).json({ error: error.message })
+
 
     }
   }
@@ -45,14 +75,16 @@ class sessionsController {
 
   async logout(req, res) {
     req.logger.info("Session terminated")
-    res.clearCookie('coderCokieToken')
-    res.redirect("/api")
-  }
+    try {
+      res.clearCookie('coderCokieToken')
+      res.redirect("/api")
+
+    } catch (error) {
+      req.logger.error(`Funcion logout en controlador: ${error.message}`)
+      res.status(500).json({ error: error.message })
 
 
-  async failedRegister(req, res) {
-    req.logger.error("Register did not work")
-    res.send({ status: 'failure', message: "Ha ocurrido un problema en la registracion" })
+    }
   }
 
   async postToLogin(req, res) {
@@ -60,32 +92,45 @@ class sessionsController {
     req.logger.debug(`Mail : ${email}`)
     req.logger.debug(`Password: ${password}`)
 
-    const checkedAccount = await sessionValidator.checkAccount(email, password)
-    const userToSign = new currentUserDTO(checkedAccount)
+    try {
+      const checkedAccount = await sessionValidator.checkAccount(email, password)
+      const userToSign = new currentUserDTO(checkedAccount)
 
-    if (checkedAccount === 'NoMailNorPassword') return res.status(404).json({ message: "No mail or password " })
-    if (checkedAccount === 'NoUser') return res.status(404).json({ message: "No User found" })
-    if (checkedAccount === 'IncorrectPassword') return res.status(404).json({ message: "Incorrect password" })
-    if (checkedAccount) {
-      await sessionServices.updateUser(checkedAccount._id, { last_connection: new Date() })
-      const token = jwt.sign({ user: userToSign.email, role: userToSign.role, phone: userToSign.phone, userID: checkedAccount._id, userName: checkedAccount.username }, 'coderSecret');
-      res.cookie('coderCokieToken', token, { maxAge: 60 * 60 * 60 * 60, httpOnly: false, withCredentials: false });
-      req.logger.info("User is logged in ")
-      res.redirect('/api')
+
+      if (checkedAccount === 'NoMailNorPassword') return res.status(404).json({ message: "No mail or password " })
+      if (checkedAccount === 'NoUser') return res.status(404).json({ message: "No User found" })
+      if (checkedAccount === 'IncorrectPassword') return res.status(404).json({ message: "Incorrect password" })
+
+
+      if (checkedAccount) {
+        await sessionServices.updateUser(checkedAccount._id, { last_connection: new Date() })
+        const token = jwt.sign({ user: userToSign.email, role: userToSign.role, phone: userToSign.phone, userID: checkedAccount._id, userName: checkedAccount.username }, 'coderSecret');
+        res.cookie('coderCokieToken', token, { maxAge: 60 * 60 * 60 * 60, httpOnly: false, withCredentials: false });
+        req.logger.info("User is logged in ")
+        res.redirect('/api')
+
+
+      }
+
+    } catch (error) {
+      req.logger.error(`Funcion postToLogin en controlador: ${error.message}`)
+      res.status(500).json({ error: error.message })
 
 
     }
 
   }
 
-  async getFailedRegisterPage(req, res) {
-    req.logger.error("Register did not work")
-    res.json({ status: 'failure', message: 'Ha ocurrido un error en el registro' })
-
-  }
   async getRestorePage(req, res) {
     req.logger.info("To restore password")
-    res.render('restore', { styleRoute: `<link href="/styles/restore.css" rel="stylesheet">` })
+    try {
+      res.render('restore', { styleRoute: `<link href="/styles/restore.css" rel="stylesheet">` })
+
+    } catch (error) {
+      req.logger.error(`Funcion getRestorePage en controlador: ${error.message}`)
+      res.status(500).json({ error: error.message })
+
+    }
 
   }
 
@@ -122,7 +167,9 @@ class sessionsController {
 
 
     } catch (error) {
-      res.status(404).json({ message: error.message, error: error })
+      req.logger.error(`Funcion restore en controlador: ${error.message}`)
+      res.status(500).json({ error: error.message })
+
 
     }
 
@@ -136,7 +183,8 @@ class sessionsController {
     const token = (req.params.token)
     req.logger.debug(`El token enviado por mail es ${token}`)
     const response = await sessionValidator.validateToken(token)
-    console.log(response)
+
+
     if (!response.token) {
       res.render('restore', {
         update: false,
@@ -145,7 +193,11 @@ class sessionsController {
 
       })
     }
+
+
     req.logger.debug(`La respuesta del servidor con respecto al token ha sido ${response}`)
+
+
     if (response === 'token caducado') {
 
       res.render('restore', {
@@ -184,7 +236,7 @@ class sessionsController {
       res.json({ message: "Updated" })
 
     } catch (error) {
-      req.logger.error("Contraseña Repetida")
+      req.logger.error(`Funcion updateUser en controlador : ${error.message}`)
       if (error === "No Token found") res.status(404).json({ error: error.message })
       res.status(401).json({ error: error.message })
 

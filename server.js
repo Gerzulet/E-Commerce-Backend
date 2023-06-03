@@ -16,8 +16,6 @@ import cors from 'cors'
 import config from './src/config/config.js'
 import errorHandler from './src/middlewares/errors/index.js'
 import { addLogger } from './src/utils/logger.js'
-import EErrors from './src/utils/EErrors.js'
-import CustomError from './src/utils/CustomError.js'
 
 const app = express()
 

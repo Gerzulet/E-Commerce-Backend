@@ -4,14 +4,31 @@ class chatController {
 
 
   async getMessages(req, res) {
-    const result = await chatValidator.getMessages({})
+    try {
+      const result = await chatValidator.getMessages({})
+      return result
+    } catch (error) {
 
-    return result
+      req.logger.error(`Funcion getMessages en controlador: ${error.message}`)
+
+      return { error: `Error con mensaje: ${error.message}` }
+
+
+
+    }
+
 
   }
 
   async createMessage(message) {
-    await chatValidator.createMessage(message)
+    try {
+      await chatValidator.createMessage(message)
+    } catch (error) {
+      req.logger.error(`Funcion createMessage en controlador: ${error.message}`)
+      return { error: `Error: ${error.message}` }
+
+
+    }
   }
 
 }
