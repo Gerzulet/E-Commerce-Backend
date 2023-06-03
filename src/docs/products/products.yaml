@@ -1,15 +1,14 @@
 securitySchemes: 
- ApiKeyAuth: 
+ cookieAuth: 
    type: apiKey
-   in: header
-   name: X-API-Key
+   in: cookie
+   name: coderCokieToken
 paths:
   /api/products/:
     get:
       summary: 'Get all products'
       security:
-         - ApiKeyAuth: []
-         - bearerAuth: []
+         - cookieAuth: []
       tags:
         - Products
       responses: 
@@ -48,6 +47,26 @@ paths:
           description: "Not authorized"
         "400":
           description: "Ha ocurrido un error, verifique que el codigo de producto sea distinto a los demas"
+  /api/products?json=true:
+    get:
+      summary: 'Get all products in JSON format'
+      security:
+         - cookieAuth: []
+      tags:
+        - Products
+      responses: 
+        "200":
+          description: "Products found"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/products"
+        "500":
+          description: "Internal server error"
+        "401":
+          description: "Sin token de autorizacion, debes loguearte primero"
   /api/products/{pid}:
     get:
       summary: 'Get product by ID'
@@ -129,6 +148,30 @@ paths:
           description: "Bad request"
         "401":
           description: "Unauthorized"
+  /api/products/{pid}?json=true:
+    get:
+      summary: 'Get product by ID'
+      tags:
+        - Products
+      parameters:
+        - name: pid
+          in: path
+          required: true
+          description: "Product ID"
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "Product found"
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/products"
+        "500":
+          description: "Internal server error"
+
 components:
   schemas:
     products:

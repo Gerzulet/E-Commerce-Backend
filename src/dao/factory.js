@@ -12,10 +12,10 @@ export let Ticket;
 
 switch (config.persistence) {
   case 'MONGO':
-    console.log('Persistence from DB')
+    console.log('📝📝 Persistence from DB')
     mongoose.set('strictQuery', false)
     mongoose.connect(config.MONGO_URI, (error) => {
-      console.log('Connected to DB from factory')
+      console.log('🔌🔌🔌🔌 Connected to DB from factory')
       if (error) {
         console.log('Cannot connect to database' + error)
         process.exit()

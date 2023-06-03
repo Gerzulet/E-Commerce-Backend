@@ -63,7 +63,6 @@ Tareas a reaizar paralelamente.
 - [ ] Documentar 
    - [ ] Agregar nueva ruta de jsons
 - [ ] Pasar a .env variables e informacion sensible (cookies secrets, etc..)
-- [ ] Agregar modulos de compresion
 
 Desde el router de /api/users, crear tres rutas:
 

@@ -5,7 +5,7 @@ const passportCall = strategy => {
     passport.authenticate(strategy, function(err, user, info) {
       if (err) return next(err);
       if (!user) {
-        return res.redirect("/api")
+        return res.status(401).redirect("/api")
       }
       req.user = user;
       next();

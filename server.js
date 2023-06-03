@@ -24,7 +24,7 @@ app.use(express.urlencoded({ extended: true }))
 
 
 // Inicializacion de websocket por lado de servidor
-const httpServer = app.listen(config.PORT, () => console.log(`Escuchando en el puerto ${config.PORT}`))
+const httpServer = app.listen(config.PORT, () => console.log(`👂👂👂 Escuchando en el puerto ${config.PORT}`))
 export const io = new Server(httpServer)
 
 
