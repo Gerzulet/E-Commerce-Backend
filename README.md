@@ -62,7 +62,7 @@ Tareas a reaizar paralelamente.
    - [ ] Agregar nuevas rutas jsons para pruebas integrales
 - [X] Documentar 
    - [X] Agregar nueva ruta de jsons
-- [ ] Pasar a .env variables e informacion sensible (cookies secrets, etc..)
+- [X] Pasar a .env variables e informacion sensible (cookies secrets, etc..)
 
 Desde el router de /api/users, crear tres rutas:
 

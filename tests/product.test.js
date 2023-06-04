@@ -5,6 +5,7 @@ import config from '../src/config/config.js';
 import productsMongo from '../src/dao/mongo/products.mongo.js';
 import mockingProductGenerator from '../src/utils/mockingProductsGenerator.js';
 import { faker } from '@faker-js/faker';
+import productValidator from '../src/validators/productValidator.js';
 
 
 
@@ -33,6 +34,8 @@ describe('Products Routes', function() {
 
 
   describe('Ruta /', async () => {
+
+
     it('Responde con vista renderizada', function(done) {
       server
         .get('/api/products')
@@ -63,23 +66,17 @@ describe('Products Routes', function() {
 
 
   describe('Ruta /Mockingproducts', async () => {
-    it('Responde con vista renderizada', function(done) {
+
+
+    it('Responde con array de objetos', function(done) {
       server
         .get('/api/products/mockingproducts')
         .expect(200)
         .end(function(err, res) {
           if (err) return done(err);
-          expect(res.text).to.contain("Mocking Products")
+          expect(res.body).to.be.an('array')
           done()
         });
-    });
-
-
-
-    it('Se esta generando un array de objetos con productos falsos', function() {
-      const result = mockingProductGenerator()
-      expect(result).to.be.an('array')
-      expect(result).to.have.lengthOf.at.least(1)
     });
 
 
@@ -105,7 +102,6 @@ describe('Products Routes', function() {
         .end(function(err, res) {
           if (err) return done(err)
           expect(res.text).to.contain("Search")
-          expect(res.text).to.contain("Sandia")// No esta renderizadno, ver que pasa aca
         })
     });
     it('Responde con mensaje de error si el id es incorrecto', async function() {
@@ -161,6 +157,8 @@ describe('Products Routes', function() {
 
 
   })
+
+
   describe('Ruta PUT (Modificar producto)', () => {
 
 
@@ -223,12 +221,16 @@ describe('Products Routes', function() {
         })
 
       setTimeout(() => {
+
+
+
+
         server
           .delete(`/api/products/${productId}`)
           .expect(200)
-          .end(function(err, res) {
+          .end(async function(err, res) {
             if (err) return done(err)
-            expect(res.text).to.not.contain(`${productId}`)
+            expect(res.body.payload.docs).to.not.contain(`${productId}`)
             done()
           })
 

@@ -82,3 +82,15 @@ error: Funcion uploadDocs en controlador: MongooseError: Query was already execu
 error: Funcion uploadDocs en controlador: MongooseError: Query was already executed: users.findOneAndUpdate({ _id: new ObjectId("647bbd89d407f0c1...
 error: Funcion uploadDocs en controlador: MongooseError: Query was already executed: users.findOneAndUpdate({ _id: new ObjectId("647bbd89d407f0c1...
 error: Funcion uploadDocs en controlador: MongooseError: Query was already executed: users.findOneAndUpdate({ _id: new ObjectId("647bbd89d407f0c1...
+error: Funcion getProductById en controlador: Producto no encontrado
+error: Funcion getProductById en controlador: Producto no encontrado
+error: Funcion getProductById en controlador: Producto no encontrado
+error: Funcion getProductById en controlador: Producto no encontrado
+error: Funcion getProductById en controlador: Producto no encontrado
+error: Funcion getProductById en controlador: Producto no encontrado
+error: Funcion getProductById en controlador: Producto no encontrado
+error: Funcion getProductById en controlador: Producto no encontrado
+error: Funcion getProductById en controlador: Producto no encontrado
+error: Funcion getProductById en controlador: Producto no encontrado
+error: Funcion getProductById en controlador: Producto no encontrado
+error: Funcion getProductById en controlador: Producto no encontrado

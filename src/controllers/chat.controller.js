@@ -8,9 +8,7 @@ class chatController {
       const result = await chatValidator.getMessages({})
       return result
     } catch (error) {
-
       req.logger.error(`Funcion getMessages en controlador: ${error.message}`)
-
       return { error: `Error con mensaje: ${error.message}` }
 
 

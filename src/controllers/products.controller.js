@@ -109,7 +109,7 @@ class productController {
     const products = await productValidator.getProducts()
     try {
       await productValidator.deleteProduct(pid, user, role)
-      res.status(200).render('products', { products, message: "Producto Eliminado" })
+      res.status(200).json({ message: "Product Eliminated", payload: products })
     } catch (error) {
       console.log(error.message)
       req.logger.error(`Funcion deleteProduct en controlador: ${error.message}`)
