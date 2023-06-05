@@ -46,7 +46,11 @@
 <script src="/socket.io/socket.io.js"></script>
 
 <script>
-const socket = io("wss://e-commerce-backend-production-a1b2.up.railway.app/socket.io/")
+window.onload(function()
+{
+//code goes here
+  
+const socket = io()
 document.getElementById("sendMessageButton").addEventListener("click", postMessage)
 let user = ""; 
 
@@ -109,5 +113,7 @@ window.addEventListener('beforeunload', function(event) {
 
 })
 
+
+});
 </script>
 
