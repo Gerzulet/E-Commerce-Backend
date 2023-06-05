@@ -87,7 +87,7 @@ function enableRowEdit(row) {
   let cells = row.cells;
   for (let i = 0; i < cells.length; i++) {
     // Excluir la columna "ID de producto" de la edición
-    if (i !== 5) {
+    if (i !== 5 && i !== 6) {
       cells[i].setAttribute("contenteditable", "true");
     }
   }
@@ -198,6 +198,7 @@ document.getElementById("nuevoProducto").addEventListener('submit', async (event
   for (let key in formValues) {
     formData.append(key, formValues[key]);
   }
+  console.log(formData)
 
   let result = {};
   await fetch('/api/products', {// 

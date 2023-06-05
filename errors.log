@@ -94,3 +94,6 @@ error: Funcion getProductById en controlador: Producto no encontrado
 error: Funcion getProductById en controlador: Producto no encontrado
 error: Funcion getProductById en controlador: Producto no encontrado
 error: Funcion getProductById en controlador: Producto no encontrado
+error: Funcion createProduct en controlador: Error trying to create product
+error: Funcion createProduct en controlador: Error trying to create product
+error: Funcion createProduct en controlador: Error trying to create product
