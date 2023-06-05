@@ -58,6 +58,8 @@ function addToCart(productId, quantity) {
   let result = {};
   let cid = document.getElementById("cid").textContent;
   console.log(productId)
+  console.log("CID" + cid)
+  console.log(quantity)
   fetch(`/api/carts/${cid}`, {
     method: 'PUT',
     headers: {

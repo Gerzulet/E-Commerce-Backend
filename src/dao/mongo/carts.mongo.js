@@ -22,11 +22,16 @@ class cartDao {
   }
 
   async updateCart(cid, product) {
+    try {
+      return await cartModel.findByIdAndUpdate({ _id: cid },
+        { $push: { products: product } },
+        { new: true, useFindAndModify: false })
 
-    return await cartModel.findByIdAndUpdate({ _id: cid },
-      { $push: { products: product } },
-      { new: true, useFindAndModify: false })
+    } catch (error) {
+      console.log(error)
+      throw new Error(error)
 
+    }
   }
   async updateQuantityToCart(cid, pid, quantity) {
     console.log(cid, pid, quantity)

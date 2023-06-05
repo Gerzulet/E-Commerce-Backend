@@ -1,7 +1,7 @@
 import twilio from 'twilio'
 import config from "../config/config.js";
 import { logger } from '../utils/logger.js'
-import { CartsService as cartsServices, ProductService } from "../repositories/index.js";
+import { CartsService as cartsServices, ProductService, UserService } from "../repositories/index.js";
 
 
 
@@ -51,20 +51,19 @@ class cartsValidator {
     if (user.role === 'premium' && enExistencia.owner === user.user) {
       throw new Error("A premium user cannot add to cart its own products")
     }
+    let cart = await this.getCartById(cid)
+
+    // Verificamos si ya sta en el carrito
+    let foundInCart = (cart.products.find(el => (el.product._id).toString() === product.product))
+    let productIndex = (cart.products.findIndex(el => (el.product._id).toString() === product.product))
+
+
 
     try {
 
-      let cart = await this.getCartById(cid)
-
-      // Verificamos si ya sta en el carrito
-      let foundInCart = (cart.products.find(el => (el.product._id).toString() === product.product))
-      let stock = foundInCart.product.stock
-      let productIndex = (cart.products.findIndex(el => (el.product._id).toString() === product.product))
-
-
 
       // Si esta en el carrito, ubicamos su id en el carrito
-      if (foundInCart != null) {
+      if (foundInCart != undefined) {
         logger.warning("VAL: 🧐 Se esta intentando agregar mas productos de los que hay")
         let productStock = cart.products[productIndex].product.stock
         // Ubicamos la cantidad solicitada en el carrito, y la sumamos con la cantidad que tenemos aca
@@ -80,7 +79,7 @@ class cartsValidator {
       }
 
     } catch (error) {
-      return error;
+      throw new Error(error)
     }
   }
 

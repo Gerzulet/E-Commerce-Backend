@@ -1,5 +1,5 @@
 function validarCorreoElectronico(correo) {
-  var patron = /^[\w\.-]+@[\w\.-]+\.\w+$/;
+  let patron = /^[\w\.-]+@[\w\.-]+\.\w+$/;
   return patron.test(correo);
 }
 

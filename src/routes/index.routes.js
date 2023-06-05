@@ -8,7 +8,7 @@ import chatRoutes from './chat.routes.js'
 
 const router = Router()
 
-router.use('/products', productRoutes)
+router.use('/products', productRoutes)//✅
 router.use('/carts', cartRoutes)
 router.use('/chat', chatRoutes)
 router.use('/session', sessionRoutes)
