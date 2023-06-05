@@ -104,7 +104,7 @@ socket.on("historialChat", data => {
 })
 
 window.addEventListener('beforeunload', function(event) {
-  var socket = new WebSocket();
+  var socket = new WebSocket('https://e-commerce-backend-production-a1b2.up.railway.app/api/chat');
   socket.close();
 
 })
