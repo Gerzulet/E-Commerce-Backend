@@ -103,7 +103,9 @@ socket.on("historialChat", data => {
   })
 })
 
-
+window.addEventListener('beforeunload', function(event) {
+  var socket = new WebSocket('tu_url_del_socket');
+  socket.close();
 
 
 
