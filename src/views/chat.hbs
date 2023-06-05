@@ -46,7 +46,7 @@
 <script src="/socket.io/socket.io.js"></script>
 
 <script>
-const socket = io()
+const socket = io("wss://e-commerce-backend-production-a1b2.up.railway.app/socket.io/")
 document.getElementById("sendMessageButton").addEventListener("click", postMessage)
 let user = ""; 
 
