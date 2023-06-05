@@ -50,7 +50,7 @@
   window.addEventListener('load', function() {
 
 
-const socket = io("wss://e-commerce-backend-production-a1b2.up.railway.app/socket.io/")
+const socket = io()
 document.getElementById("sendMessageButton").addEventListener("click", postMessage)
 let user = ""; 
 
