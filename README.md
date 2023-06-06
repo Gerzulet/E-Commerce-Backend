@@ -21,6 +21,7 @@
 Backend para un e-commerce realizado con NodeJS, Express, Vanilla Javascript y MongoDB/Mongoose como base de datos, con arquitectura en capas.
 Esta ideado para administrar  productos, usuarios y gestiones de compras desde un cliente.
 Puede ser conectado el lado frontend de un e-commerce.
+![Recording 2023-06-06 at 19 58 29](https://github.com/Gerzulet/E-Commerce-Backend/assets/92329156/c6898682-25af-4708-ab66-73afd43e20c9)
 
 Este proyecto involucra fundamentos a la hora de realizar el backend de una aplicacion, ademas de consolidar el uso de un cliente para el backend al momento de realizar peticiones.
 
