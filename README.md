@@ -56,7 +56,12 @@ npm run test:products   : Testeos con productos
 npm run test:carts      : Testeos con carritos  
 npm run test:sessions   : Testeos con usuarios y sesiones       
 
+### Uso 
 
+Podes usar las funcionalidades del administrador con la cuenta: 
+
+user: admin@gmail.com
+password: 1234
 
 ## Agradecimientos
 
