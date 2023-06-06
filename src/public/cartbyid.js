@@ -247,7 +247,7 @@ function enableRowEdit(row) {
       const quantityInput = document.createElement('input');
       quantityInput.type = 'number';
       quantityInput.min = 0;
-      quantityInput.max = parseInt(cells[i].innerText);
+      quantityInput.max = parseInt(cells[5].innerText);
       quantityInput.value = parseInt(cells[i].innerText);
 
       // Al habilitar la edición, almacenar el contenido original de la celda
@@ -302,6 +302,14 @@ async function sendRowData(row) {
   let cid = document.getElementById("cid").textContent;
   let quantity = parseInt(row.cells[4].querySelector("input").value);
   let pid = row.cells[6].innerText
+
+  let stock = parseInt(row.cells[5].innerText)
+
+  if (quantity > stock) {
+    row.cells[4].querySelector("input").value = stock
+    quantity = stock
+  }
+
 
 
 
