@@ -120,15 +120,15 @@ class cartsValidator {
   async purchase(cid, user) {
 
 
-
-    const client = twilio(config.twilio_account, config.twilio_token)
     const cartInExistence = await cartsServices.getCartById(cid)
+
     if (!cartInExistence) throw new Error("Missing CID")
     if (!user) throw new Error("Missing user")
     if (cartInExistence.products.length === 0) throw new Error("No products in cart")
 
     try {
 
+      const client = twilio(config.twilio_account, config.twilio_token)
 
       const cartToModify = cartInExistence;
       let newListProducts = []
@@ -175,19 +175,26 @@ class cartsValidator {
 
       await cartsServices.purchase(ticket)
 
-
+      console.log(user.phone)
       let unOrderedProducts = await cartsServices.getCartById(cid)
+      try {
+        client.messages.create({
+          body: 'Has realizado una compra',
+          from: config.twilio_number,
+          to: user.phone // EN EL TELEFONO SIEMPRE AGREGAR EL PREFIJO +54, SI NO, NO LO VA A TOMARK
+        })
+          .catch(e => {
+            return e
+          })
+        return { ticket: ticket, unOrderedProducts: unOrderedProducts, message: "Los productos no agregados son aquellos que superan las cantidades de stock disponible" };
+      } catch (error) {
+        throw new Error(error)
 
-      client.messages.create({
-        body: 'Has realizado una compra',
-        from: config.twilio_number,
-        to: '+541167435985' // EN EL TELEFONO SIEMPRE AGREGAR EL PREFIJO +54, SI NO, NO LO VA A TOMARK
-      })
-      return { ticket: ticket, unOrderedProducts: unOrderedProducts, message: "Los productos no agregados son aquellos que superan las cantidades de stock disponible" };
+      }
 
 
     } catch (error) {
-      return error
+      throw new error(error)
 
     }
 

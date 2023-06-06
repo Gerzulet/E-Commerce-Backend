@@ -154,7 +154,6 @@ class cartController {
       res.json({ message: "Se ha generado el siguiente ticket:", result })
     } catch (Error) {
       req.logger.error(`Funcion purchase en controlador: ${Error.message}`)
-
       res.json({ error: Error.message })
 
 
