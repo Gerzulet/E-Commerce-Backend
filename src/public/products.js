@@ -189,16 +189,15 @@ document.getElementById("nuevoProducto").addEventListener('submit', async (event
     title: document.getElementsByName("title")[0].value,
     description: document.getElementsByName("description")[0].value,
     category: document.getElementsByName("category")[0].value,
-    price: document.getElementsByName("price")[0].value,
+    price: parseInt(document.getElementsByName("price")[0].value),
     thumbnail: document.getElementsByName("thumbnail")[0].files[0],
     code: document.getElementsByName("code")[0].value,
-    stock: document.getElementsByName("stock")[0].value
+    stock: parseInt(document.getElementsByName("stock")[0].value)
   };
   let formData = new FormData();
   for (let key in formValues) {
     formData.append(key, formValues[key]);
   }
-  console.log(formData)
 
   let result = {};
   await fetch('/api/products', {// 

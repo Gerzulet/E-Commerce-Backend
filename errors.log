@@ -100,3 +100,21 @@ error: Funcion createProduct en controlador: Error trying to create product
 error: Funcion purchase en controlador: cartInExistence is not defined
 error: Funcion purchase en controlador: Cannot access 'cartInExistence' before initialization
 error: Funcion purchase en controlador: Cannot access 'cartInExistence' before initialization
+error: Funcion createProduct en controlador: Error trying to create product, verify your inputs
+error: Funcion createProduct en controlador: Error trying to create product, verify your inputs
+error: Funcion createProduct en controlador: Error trying to create product, verify your inputs
+error: Funcion createProduct en controlador: Error trying to create product, verify your inputs
+error: Funcion createProduct en controlador: Error trying to create product, verify your inputs
+error: Funcion createProduct en controlador: Error trying to create product, verify your inputs
+error: Funcion createProduct en controlador: Error trying to create product, verify your inputs
+error: Funcion createProduct en controlador: Error trying to create product, verify your inputs
+error: Funcion createProduct en controlador: Error trying to create product, verify your inputs
+error: Funcion createProduct en controlador: Error trying to create product, verify your inputs
+error: Funcion createProduct en controlador: Error trying to create product, verify your inputs
+error: Funcion createProduct en controlador: Error trying to create product, verify your inputs
+error: Funcion createProduct en controlador: Error: Error: products validation failed: stock: Cast to Number failed for value "NaN" (type string) at path "stock"
+error: Funcion createProduct en controlador: Error: Error: products validation failed: stock: Cast to Number failed for value "NaN" (type string) at path "stock"
+error: Funcion restore en controlador: Invalid user
+error: Funcion restore en controlador: Invalid user
+error: Funcion restore en controlador: Invalid user
+error: Funcion restore en controlador: Invalid user

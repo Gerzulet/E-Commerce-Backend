@@ -152,7 +152,7 @@ class sessionsController {
           html: `
          <div>
           <h1> Hi! You can restore your password, follow this link</h1>
-<h3>http://localhost:${config.PORT}/api/session/updateUser/${token}</h3>
+<h3>https://e-commerce-backend-production-a1b2.up.railway.app/api/session/updateUser/${token}</h3>
 
         </div> 
 `, attachments: []

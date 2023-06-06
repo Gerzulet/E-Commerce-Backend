@@ -33,10 +33,11 @@ const enviarMail = document.getElementById("mailform").addEventListener('submit'
     }
     )
     .then(data => {
+      console.log(data)
       if (!result || !result.ok) {
         iziToast.error({
           title: "Ha ocurrido un error",
-          message: data.message || ""
+          message: data.error || ""
         })
       }
     })

@@ -63,6 +63,14 @@ class productValidator {
     }
 
 
+    if (typeof (title) !== 'string' || typeof (description) !== 'string' || parseInt(stock) === 'NaN' || parseInt(price) === 'NaN' || typeof (code) !== 'string') {
+      throw new Error("One of your inputs is not the correct one, putting letters in price for example")
+    }
+
+
+
+
+
 
     try {
       const product = { title, description, category, price, thumbnailName, code, stock, owner }

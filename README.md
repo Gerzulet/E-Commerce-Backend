@@ -3,6 +3,14 @@
 
 E-Commerce, realizado en el lado del backend, en base a la entrega final de CODERHOUSE. 
 
+CHECKLIST
+
+
+- [X] Carts
+- [X] Users
+- [x] Products
+    - [X] Añadir validaciones o manejar errores ante informacion incorrecta desde el cliente
+- [ ] Sessions
 
 Tareas a reaizar paralelamente. 
 
