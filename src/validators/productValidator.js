@@ -104,13 +104,14 @@ class productValidator {
       logger.debug(`El rol del usuario es : ${role}`)
       logger.debug(`El rol del dueño del producto es: ${product.owner}`)
 
-
+      console.log(product.owner)
+      console.log(user)
       if (product.owner === 'admin' && role === 'premium') {
         logger.error("intentando eliminar producto sin permisos")
         throw new Error("Error eliminando producto por permisos")
       }
 
-      if ((product.owner === user) && role === 'premium') {
+      if (((product.owner === user) && role === 'premium') || role === "admin") {
         await transport.sendMail({
           from: 'German <german.alejandrozulet@gmail.com>',
           to: user,
@@ -126,7 +127,7 @@ class productValidator {
   <div>
     <h1>Producto Eliminado</h1>
     <p>Estimado/a Usuario/a,</p>
-    <p>Ha seleccioando el producto, para eliminar de las siguientes caracteristicas:</p>
+    <p>Se ha seleccionado el producto para eliminar,  con las siguientes caracteristicas:</p>
 
 <ul>
   <li>Nombre:${product.title}</li>
@@ -146,15 +147,15 @@ class productValidator {
       `, attachments: []
 
         })
+        await productServices.deleteProduct(pid)
 
-
-
+      } else {
+        throw new Error("No estas autorizado para realizar esta operacion, no eres dueño del producto")
       }
 
 
-      await productServices.deleteProduct(pid)
     } catch (error) {
-      return error;
+      throw new Error(error)
     }
   }
 

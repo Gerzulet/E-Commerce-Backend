@@ -10,7 +10,7 @@ CHECKLIST
 - [X] Users
 - [x] Products
     - [X] Añadir validaciones o manejar errores ante informacion incorrecta desde el cliente
-- [ ] Sessions
+- [x] Sessions
 
 Tareas a reaizar paralelamente. 
 

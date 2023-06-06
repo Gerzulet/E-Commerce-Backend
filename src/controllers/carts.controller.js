@@ -48,6 +48,7 @@ class cartController {
   }
 
   async createCart(req, res) {
+    console.log(req.user.user)
     try {
       await cartValidator.createCart()
       await transport.sendMail({

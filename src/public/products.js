@@ -250,9 +250,18 @@ deleteButtons.forEach(button => {
     })
       .then(response => {
         if (!response.ok) {
-          deleteMessage.innerHTML = "No tienes permisos para eliminar este producto"
+          iziToast.error({
+            title: "Ups",
+            message: "No tienes permisos para realizar esta tarea"
+          })
         } else {
-          window.location.href = "/api/products"
+          iziToast.success({
+            title: "Producto eliminado"
+          })
+          setTimeout(() => {
+            window.location.href = "/api/products"
+
+          }, 800);
         }
       })
       .catch(error => {
