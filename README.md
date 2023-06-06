@@ -1,116 +1,88 @@
-# E-Commerce-Backend
+# Administrador E-Commerce
 
 
-E-Commerce, realizado en el lado del backend, en base a la entrega final de CODERHOUSE. 
+![GitHub top language](https://img.shields.io/github/languages/top/Gerzulet/E-Commerce-Backend?style=for-the-badge)
+![GitHub repo size](https://img.shields.io/github/repo-size/Gerzulet/E-Commerce-Backend?style=for-the-badge)
+![GitHub last commit](https://img.shields.io/github/last-commit/Gerzulet/E-Commerce-Backend?style=for-the-badge)
+![Website](https://img.shields.io/website?logo=Railway&style=for-the-badge&url=https%3A%2F%2Fe-commerce-backend-production-a1b2.up.railway.app%2Fapi%2F)
 
-CHECKLIST
+## E-Commerce, realizado en el lado del backend, en base a la entrega final de la plataforma CODERHOUSE. 
 
-
-- [X] Carts
-- [X] Users
-- [x] Products
-    - [X] Añadir validaciones o manejar errores ante informacion incorrecta desde el cliente
-- [x] Sessions
-
-Tareas a reaizar paralelamente. 
-
-- [ ] Trabajar en estilos de renders
-
-  - [X] Index
-    - [X] Incluir user en pantalla principal
-    - [X] Agregar boton para salir de sesion
-      - [X] Crear endpoint
-
-
-  - [X] Products
-   - [X] Rediseñar carga de producto en carrito
-   - [X] Manejar busqueda y errores al momento de buscar productos
-   - [X] Estilar carga de productos (Probar con modal )
-   - [X] Al eliminar productos recargar pagina
-   - [X] Revisar permisos para eliminar productos
-   - [X] Manejar respuestas con alertify o similar
-   - [X] Habilitar render para modificacion de productos
-
-
-  - [X] Carts
-   - [X] Si agrego un producto, si se encuentra en el carrito debe sumarse
-   - [X] Manejar respuestas con alertify o similar
-   - [X] Estilar detalles de carritos
-   - [X] Manejar casos en que intentamos solicitar mas productos de los que hay en stock
-   - [X] Poder modificar cantidad de la tabla
-   - [X] Agregar funcionalidad para borrar producto de carrito  desde cliente
-
-
-  - [X] Users
-   - [X] Manejar respuesta si se intenta acceder sin permisos
-   - [X] Estilar
-   - [X] Estilar carga de documentos
-
-
-  - [X] Login
-   - [X] Redireccionar a HOME tras hacer login exitoso
-   - [X] Manejar respuesta en caso de usuario incorrecto
-
-  - [X] Chat
-   - [X] Manejar permisos 
-
-  - [X] Restore
-   - [X] Estilar
-   - [X] Manejar respuestas ante informacion incorrecta
-
-  - [X] Register
-   - [X] Verificar creacion de usuario
-       - [X] Manejar respuesta desde el front
-
-- [X] Habilitar respuestas de servidor en json
-- [ ] Refinar manejo de logs 
-   - [X] Manejar errores
-- [X] Manejar cambios en renderizados a traves del cliente y no desde el servidor
-- [ ] Refinar testing
-   - [ ] Agregar nuevas rutas jsons para pruebas integrales
-- [X] Documentar 
-   - [X] Agregar nueva ruta de jsons
-- [X] Pasar a .env variables e informacion sensible (cookies secrets, etc..)
-
-Desde el router de /api/users, crear tres rutas:
-
-
-- [X] GET  /  deberá obtener todos los usuarios, éste sólo debe devolver los datos principales como nombre, correo, tipo de cuenta (rol)
-
-- [X] DELETE / deberá limpiar a todos los usuarios que no hayan tenido conexión en los últimos 2 días. (puedes hacer pruebas con los últimos 30 minutos, por ejemplo). Deberá enviarse un correo indicando al usuario que su cuenta ha sido eliminada por inactividad
-
-- [X] Crear una vista para poder visualizar, modificar el rol y eliminar un usuario. Esta vista únicamente será accesible para el administrador del ecommerce
+#### Deploy
+  <a href="https://e-commerce-backend-production-a1b2.up.railway.app/api/">
+    <img  src="https://railway.app/brand/logotype-light.png" >
+  </a>
 
 
 
-- [X] Modificar el endpoint que elimina productos, para que, en caso de que el producto pertenezca a un usuario premium, le envíe un correo indicándole que el producto fue eliminado.
-Verificar en este caso modulo de delete producto, el usuario premium no puede eliminar producto de otros
+## Descripcion / Description
 
 
-- [X] Finalizar las vistas pendientes para la realización de flujo completo de compra. NO ES NECESARIO tener una estructura específica de vistas, sólo las que tú consideres necesarias para poder llevar a cabo el proceso de compra.
+Backend para un e-commerce realizado con NodeJS, Express, Vanilla Javascript y MongoDB/Mongoose como base de datos, con arquitectura en capas.
+Esta ideado para administrar  productos, usuarios y gestiones de compras desde un cliente.
+Puede ser conectado el lado frontend de un e-commerce.
 
-No es necesario desarrollar vistas para módulos que no influyan en el proceso de compra (Como vistas de usuarios premium para crear productos, o vistas de panel de admin para updates de productos, etc)
+Este proyecto involucra fundamentos a la hora de realizar el backend de una aplicacion, ademas de consolidar el uso de un cliente para el backend al momento de realizar peticiones.
+
+Espero poder seguir desarrollando mas aplicaciones como esta para administrar no solo productos y usuarios si no que tareas y elementos mas complejos.
+
+## Caracteristicas / Features 
+
+  -  Operaciones CRUD para productos, carritos y usuarios.
+  -  Manejo de autenticaciones y autorizaciones con libreria passport.
+  -  Sistema de logueo y registracion, ademas de sistema de restauracion de contraseña.
+  -  Uso de patrones de diseño como Factory y Repository.
+  -  Carga de archivos con Multer. 
+  -  Documentacion realizada con Swagger.
+  -  Persistencia de sesion con cookies, usando JWT.
+  -  Sistema de loggers con libreria Winston logger.
+  -  Uso de Socket.io para funcionalidad de chat (actualmente fuera de servicio en deploy)
+  -  Sistema de mensajeria con Twilio y Nodemailer.
+  -  Renderizado desde servidor con libreria handlebars, con respuestas en formato JSON (pasando parametro ?json=true)
+  -  Testing unitarios e integrales con librerias como Mocha, Chai y Supertest.
+  -  Sistema de toasts con libreria IziToasts para respuestas desde el servidor.
+    
+## Install 
+
+Podes instalar este proyecto simplemente con "npm install" o con cualquier administrador de paquetes.
 
 
-- [ ] Realizar el despliegue de tu aplicativo en la plataforma de tu elección (Preferentemente Railway.app, pues es la abarcada en el curso) y corroborar que se puede llevar a cabo un proceso de compra completo.
+### Scripts
+
+npm run prod/dev : Correr app en modo desarrollo/produccion, solo cambia el puerto
+
+npm run test:products   : Testeos con productos
+npm run test:carts      : Testeos con carritos  
+npm run test:sessions   : Testeos con usuarios y sesiones       
 
 
-Objetivos generales
 
-Completar el proyecto final 
+## Agradecimientos
 
-Objetivos específicos
+Agradezco considerablemente la asistencia de  Emiliano Perez, profesor de backend en CODERHOUSE, y  Iñaki Odriozola , tutor en  CODERHOUSE.
 
-Conseguir una experiencia de compra completa
-Cerrar detalles administrativos con los roles.
+## Librerias utilizadas
 
-Formato
+ - Bcrypt (Para hasheo de contraseñas)
+ - Handlebars (Para renderizado desde servidor)
+ - Commander (para manejo de flags y modos de desarrollo y produccion)
+ - Cookie-Parser
+ - Cors
+ - Express
+ - Mongoose (Para manejo de base de datos)
+ - Multer (para carga de archivos)
+ - Nodemailer (para enviar mails)
+ - Passport (para estrategias de autenticacion y autorizacion)
+ - Socket.io (para implementacion de funcionalidad de chat)
+ - Superagent(Para testeos)
+ - Swagger (Para documentacion)
+ - Twilio (para sistema de mensajeria SMS)
+ - Winston Logger (Para sistema de loggers)
+ - Faker.js (para mocks de productos)
+ - Mocha (para testeos)
+ - Chai (para testeos)
+ - DotEnv para uso de variables de entorno (no cargadas en este repositorio)
 
-Link al repositorio sin node_modules
-Link del proyecto desplegado..
 
-Sugerencias
 
-Presta especial atención al template del Proyecto final. ¡Es crucial para alcanzar la nota que esperas!
-Debido a la complejidad de frontend requerida para poder aplicar una pasarela de pago, el PF no evalúa la pasarela de pago.
 
