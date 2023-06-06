@@ -19,11 +19,10 @@ document.getElementById("registerForm").addEventListener('submit', async (event)
     password: document.getElementById('password').value,
     email: document.getElementById('email').value,
   }
-  console.log(data)
 
 
 
-  if (!data.first_name || !validarCorreoElectronico(data.email) || !data.last_name || !data.email || !/^[0-9]*$/.test(data.age) || !data.age || !/\+[0-9]+/i.test(data.phone) || !data.password) {
+  if (!data.first_name || !validarCorreoElectronico(data.email) || !data.last_name || !data.email || !data.age || !/\+[0-9]+/i.test(data.phone) || !data.password) {
     iziToast.warning({
       title: "Hey!",
       message: "Llena los campos necesarios, en el modo que se sugiere"

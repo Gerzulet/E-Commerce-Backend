@@ -333,11 +333,43 @@ async function sendRowData(row) {
     });
 }
 
+document.getElementById("purchaseButton").addEventListener('click', async () => {
+
+
+  let cid = document.getElementById("cid").textContent
+  await fetch(`/api/carts/${cid}/purchase`, {// 
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  })
+    .then(response => {
+      if (response.ok) {
+        iziToast.success({
+          title: "Carrito adquirido"
+        })
+        setTimeout(() => {
+          window.location.href = "/api/carts"
+        }, 2000);
+      } else {
+        result = response
+        return response.json()
+      }
+    }
+    )
+    .then(data => {
+      if (!result.ok) {
+        iziToast.error({
+          title: "Ha ocurrido un error",
+          message: data.message
+        })
+      }
+    })
 
 
 
 
 
 
-
+})
 
