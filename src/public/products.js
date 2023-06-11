@@ -220,11 +220,10 @@ document.getElementById("nuevoProducto").addEventListener('submit', async (event
     }
     )
     .then(data => {
-      console.log(data)
       if (!result || !result.ok) {
         iziToast.error({
           title: "Ha ocurrido un error",
-          message: data.error
+          message: data.message
         })
       }
     })

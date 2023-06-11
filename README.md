@@ -92,7 +92,7 @@ Agradezco considerablemente la asistencia de  Emiliano Perez, profesor de backen
 
   - [ ] Arreglar respuesta si se intenta crear un producto como usuario
   - [ ] Agretar estado de carrito
-  - [ ] Ocultar login y register si ya estas logueado
+  - [X] Ocultar login y register si ya estas logueado
   - [ ] Revisar de vuelta el chat
 
 
