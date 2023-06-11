@@ -42,6 +42,7 @@
       {{/if}}
 
 
+ {{#unless loggedBoolean}}
       <li>
         <a href="/api/session/login">
           <img src="../images/login.png" alt="login">
@@ -54,6 +55,7 @@
           <span class="invisible">Register</span>
         </a>
       </li>
+ {{/unless }}
 
             {{#if loggedin}}
 

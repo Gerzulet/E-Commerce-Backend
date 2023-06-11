@@ -21,8 +21,10 @@ router.get('/', (req, res) => {
   }
   req.logger.debug(usuario)
   let isAdmin = usuario.role === "admin" ? true : false // Validacion para entrar en endpoint de users
+  let loggedBoolean = verification && true
+  console.log(loggedBoolean)
   res.render('index', {
-    styleRoute: `<link href="../styles/index.css" rel="stylesheet">`, loggedin: verification,
+    styleRoute: `<link href="../styles/index.css" rel="stylesheet">`, loggedBoolean, loggedin: verification,
     user: usuario.userName,
     isAdmin
   })

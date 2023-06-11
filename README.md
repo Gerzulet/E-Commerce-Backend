@@ -68,8 +68,7 @@ Agradezco considerablemente la asistencia de  Emiliano Perez, profesor de backen
  - Commander (para manejo de flags y modos de desarrollo y produccion)
  - Cookie-Parser
  - Cors
- - Express
- - Mongoose (Para manejo de base de datos)
+ - Express Mongoose (Para manejo de base de datos)
  - Multer (para carga de archivos)
  - Nodemailer (para enviar mails)
  - Passport (para estrategias de autenticacion y autorizacion)
@@ -83,6 +82,11 @@ Agradezco considerablemente la asistencia de  Emiliano Perez, profesor de backen
  - Chai (para testeos)
  - DotEnv para uso de variables de entorno (no cargadas en este repositorio)
 
+ ## TODO 
 
+  - [ ] Arreglar respuesta si se intenta crear un producto como usuario
+  - [ ] Agretar estado de carrito
+  - [ ] Ocultar login y register si ya estas logueado
+  - [ ] Revisar de vuelta el chat
 
 
