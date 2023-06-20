@@ -8,10 +8,12 @@
 
 ## E-Commerce, realizado en el lado del backend, en base a la entrega final de la plataforma CODERHOUSE. 
 
+
 #### Deploy
-  <a href="https://zuletportfolio.netlify.app/">
-    <img  src="https://www.tiuweehan.com/img/netlify.png" >
+  <a href="https://e-commerce-backend-production-a1b2.up.railway.app/api/">
+    <img  src="https://railway.app/brand/logotype-light.png" >
   </a>
+
 
 
 
