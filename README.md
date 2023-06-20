@@ -60,6 +60,8 @@ npm run test:sessions   : Testeos con usuarios y sesiones
 
 ### Uso 
 
+#### Requiere de variables de entorno para funcionar, en estas se encuentra lo necesario para acceder a la base de datos, entre otras funcionalidades basicas!!
+
 Podes usar las funcionalidades del administrador con la cuenta: 
 
 user: admin@gmail.com
